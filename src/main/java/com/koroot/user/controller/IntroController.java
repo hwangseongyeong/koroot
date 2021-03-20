@@ -11,9 +11,14 @@ public class IntroController {
         return "content/intro/directions";
     }
 
-
     @GetMapping("/intro/history")
-    public String greetings(){
+    public String history(){
         return "content/intro/history";
     }
+
+    @GetMapping("/intro/greetings")
+    public String greetings(){
+        return "content/intro/greetings";
+    }
+
 }
