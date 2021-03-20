@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- ======= Header ======= -->
+<header th:fragment="headerFragment" id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <h1 class="logo"><a href="/">뿌리의집<span>.</span></a></h1>
+        <!-- Uncomment below if you prefer to us집e an image logo -->
+        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="dropdown"><a href="#"><span>단체소개</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="#">인사말</a></li>
+                        <li><a href="#">설립목적</a></li>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">함께하는 사람들</a></li>
+                        <li><a href="#">연차보고서</a></li>
+                        <li><a href="#">투명한재정,회계보고</a></li>
+                        <li><a href="directions">찾아오시는길</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="#about">활동</a></li>
+                <li><a class="nav-link scrollto" href="#services">출판</a></li>
+                <li><a class="nav-link scrollto " href="#portfolio">후원참여</a></li>
+                <li><a class="nav-link scrollto" href="#team">자료실</a></li>
+                <li class="dropdown"><a href="#"><span>커뮤니케이션</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="#">공지</a></li>
+                        <li><a href="#">언론보도</a></li>
+                        <li><a href="#">해외입양인 목소리</a></li>
+                        <li><a href="#">김도현 목사의 해외입양 이야기</a></li>
+                        <li><a href="#">문의하기</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->
+
+</html>
