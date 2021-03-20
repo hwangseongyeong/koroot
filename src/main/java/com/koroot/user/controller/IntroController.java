@@ -21,4 +21,10 @@ public class IntroController {
         return "content/intro/greetings";
     }
 
+    @GetMapping("/intro/establishment")
+    public String establishment(){
+        return "content/intro/establishment";
+    }
+
+
 }
