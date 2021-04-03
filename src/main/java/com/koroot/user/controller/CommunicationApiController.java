@@ -15,7 +15,7 @@ public class CommunicationApiController {
     @GetMapping("/api/communication/noticeList")
     public List<NoticeDto> getNoticeAll(){
         List<NoticeDto> list = new ArrayList<>();
-        for(int i=0;i<1000;i++){
+        for(int i=1;i<1000;i++){
             list.add(NoticeDto.of(i,String.valueOf(i),String.valueOf(i),String.valueOf(i)));
         }
         return list;

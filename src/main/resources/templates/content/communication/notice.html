@@ -8,17 +8,24 @@
 
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3><span>공지사항</span></h3>
+                </div>
+            </div>
             <table id="table"
                    data-toggle="table"
                    data-pagination="true"
+                   data-search="true"
+                   data-show-columns="true"
+                   data-halign="center"
                    data-url="/api/communication/noticeList">
                 <thead>
                 <tr>
-                    <th data-field="noticeId">번호</th>
-                    <th data-field="category">카테고리</th>
-                    <th data-field="title">제목</th>
-                    <th data-field="writer">작성자</th>
+                    <th data-field="noticeId" data-halign="center" data-align="center">번호</th>
+                    <th data-field="category" data-halign="center" data-align="center">카테고리</th>
+                    <th data-field="title" data-halign="center" data-align="center">제목</th>
+                    <th data-field="writer" data-halign="center" data-align="center">작성자</th>
                 </tr>
                 </thead>
             </table>
