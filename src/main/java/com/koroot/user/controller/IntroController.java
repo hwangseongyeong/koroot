@@ -26,5 +26,18 @@ public class IntroController {
         return "content/intro/establishment";
     }
 
+    @GetMapping("/intro/people")
+    public String people(){
+        return "content/intro/people";
+    }
 
+    @GetMapping("/intro/annual")
+    public String annual(){
+        return "content/intro/annual";
+    }
+
+    @GetMapping("/intro/accounting")
+    public String accounting(){
+        return "content/intro/accounting";
+    }
 }
