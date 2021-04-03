@@ -19,13 +19,16 @@
                    data-search="true"
                    data-show-columns="true"
                    data-halign="center"
-                   data-url="/api/communication/noticeList">
+                   data-url="/api/communication/noticeList"
+                   data-click-to-select="test"
+            >
                 <thead>
                 <tr>
-                    <th data-field="noticeId" data-halign="center" data-align="center">번호</th>
-                    <th data-field="category" data-halign="center" data-align="center">카테고리</th>
+                    <th class="me-sm-1" data-field="noticeId" data-halign="center" data-align="center">번호</th>
                     <th data-field="title" data-halign="center" data-align="center">제목</th>
                     <th data-field="writer" data-halign="center" data-align="center">작성자</th>
+                    <th data-field="writer" data-halign="center" data-align="center">등록일</th>
+                    <th data-field="writer" data-halign="center" data-align="center">조회수</th>
                 </tr>
                 </thead>
             </table>
@@ -35,6 +38,18 @@
 
     <th:block layout:fragment="script">
         <script th:src="@{/js/communication/notice.js}"></script>
+
+        <script>
+            $(function(){
+                $('#table').on('click-row.bs.table', function (e, rowData) {
+                    console.log(e,rowData);
+
+
+
+                });
+            });
+
+        </script>
     </th:block>
 
     <style type="text/css">
