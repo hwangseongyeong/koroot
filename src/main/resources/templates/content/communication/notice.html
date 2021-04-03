@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
 
@@ -7,9 +8,27 @@
 
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-            공지사항 - 작업중
+
+            <table id="table"
+                   data-toggle="table"
+                   data-pagination="true"
+                   data-url="/api/communication/noticeList">
+                <thead>
+                <tr>
+                    <th data-field="noticeId">번호</th>
+                    <th data-field="category">카테고리</th>
+                    <th data-field="title">제목</th>
+                    <th data-field="writer">작성자</th>
+                </tr>
+                </thead>
+            </table>
+
         </div>
     </section>
+
+    <th:block layout:fragment="script">
+        <script th:src="@{/js/communication/notice.js}"></script>
+    </th:block>
 
 </div>
 
