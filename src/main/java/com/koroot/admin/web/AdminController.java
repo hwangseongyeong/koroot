@@ -1,4 +1,4 @@
-package com.koroot.admin;
+package com.koroot.admin.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

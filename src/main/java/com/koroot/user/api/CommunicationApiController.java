@@ -1,4 +1,4 @@
-package com.koroot.user.controller;
+package com.koroot.user.api;
 
 import com.koroot.user.model.NoticeDto;
 import lombok.RequiredArgsConstructor;
