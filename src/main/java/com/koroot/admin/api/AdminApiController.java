@@ -20,6 +20,11 @@ public class AdminApiController {
         return boardService.getBoardList(BoardType.NOTICE);
     }
 
+    @GetMapping("/admin/api/board/listAll")
+    public List<Board> getBoardListAll() {
+        return boardService.getBoardListAll();
+    }
+
     @GetMapping("/admin/api/boardCreate")
     public Board createBoard() {
         return boardService.createBoard();

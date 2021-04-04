@@ -16,7 +16,7 @@ public enum BoardType {
     VIDEO("영상 자료"),
     PRESS("언론 보도"),
     VOICE("해외입양인 목소리"),
-    story("김도현 목사의 해외입양 이야기"),
+    STORY("김도현 목사의 해외입양 이야기"),
     ;
 
     private String name;
