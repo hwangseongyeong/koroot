@@ -443,7 +443,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 45vh;
+  height: 55vh;
   background: url("../img/main.jpg") top left;
   background-size: cover;
   position: relative;
@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 40px 0;
   overflow: hidden;
 }
 
@@ -869,7 +869,7 @@ section {
 }
 
 .clients img {
-  max-width: 45%;
+  max-width: 80%;
   transition: all 0.4s ease-in-out;
   display: inline-block;
   padding: 15px 0;
