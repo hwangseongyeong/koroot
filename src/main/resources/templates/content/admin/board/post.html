@@ -13,21 +13,25 @@
                     <h3><span>관리자 게시판</span></h3>
                 </div>
             </div>
+
             <table id="table"
                    data-toggle="table"
                    data-pagination="true"
                    data-search="true"
                    data-show-columns="true"
                    data-halign="center"
-                   data-url="/api/communication/noticeList"
+                   data-url="/admin/api/board/listAll"
             >
             </table>
-
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPost">등록</button>
+            </div>
         </div>
+
     </section>
 
     <div id="modalPost" class="modal fade" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">게시물 - 등록</h5>
@@ -42,8 +46,16 @@
                             <td class="w-auto">
                                 <select id="postType" name="postType">
                                     <option value="">선택해주세요.</option>
-                                    <option value="">이미지 게시판</option>
-                                    <option value="">자료실 게시판</option>
+                                    <option value="NOTICE">공지 사항</option>
+                                    <option value="ACCOUNTING">투명한 재정, 회계 보고</option>
+                                    <option value="IMAGE">이미지</option>
+                                    <option value="BOOK_STORY">책 이야기</option>
+                                    <option value="SUPPORT_STATUS">후원 현황</option>
+                                    <option value="PUBLICATION">발간 자료</option>
+                                    <option value="VIDEO">영상 자료</option>
+                                    <option value="PRESS">언론 보도</option>
+                                    <option value="VOICE">해외입양인 목소리</option>
+                                    <option value="STORY">김도현 목사의 해외입양 이야기</option>
                                 </select>
                             </td>
                         </tr>
@@ -58,28 +70,98 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalPost">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalPost">닫기</button>
+                    <button id="btnSave" type="button" class="btn btn-primary">저장</button>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>s
 
     <th:block layout:fragment="script">
 <!--        <script th:src="@{/js/communication/notice.js}"></script>-->
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 
         <script type="text/javascript">
+            // function ajax_file_upload(p) {
+            //     if (!p.files || !p.loader || !p.path) return new XMLHttpRequest;
+            //     const formData = new FormData();
+            //     for (const idx in p.files) {
+            //         formData.append("uploadfile", p.files[idx]);
+            //     }
+            //     formData.append("path", p.path);
+            //
+            //     return $.ajax({
+            //         url: '/api/common/fileupload',
+            //         processData: false,
+            //         contentType: false,
+            //         data: formData,
+            //         type: 'POST',
+            //         onprogress: function (e) {
+            //             p.fn_progress && p.fn_progress(e);
+            //         },
+            //         success: function(e){
+            //             p.fn_success && p.fn_success(e);
+            //         },
+            //         error: function (e) {
+            //             p.fn_error && p.fn_error;
+            //         },
+            //         abort: function (e) {
+            //             p.fn_abort && p.fn_abort(e);
+            //         }
+            //     });
+            // }
+
+            // var CustomUploadAdapter = function (loader, path, fn_resolve) {
+            //     this.constructor = function ( loader ) {
+            //         this.loader = loader;
+            //         this.path = path;
+            //         this.fn_resolve = fn_resolve;
+            //     };
+            //     this.upload = function () {
+            //         return new Promise(function (resolve, reject) {
+            //             this.xhr = ajax_file_upload({
+            //                 loader: loader,
+            //                 resolve: resolve,
+            //                 reject: reject,
+            //                 files: [loader.file],
+            //                 path: path,
+            //                 fn_progress: function (e) {
+            //                     e.lengthComputable && (loader.uploadTotal = e.total, loader.uploaded = e.loaded);
+            //                 },
+            //                 fn_success: function (e) {
+            //                     resolve(fn_resolve && fn_resolve(e));
+            //                 },
+            //                 fn_error: function (e) {
+            //                     reject("upload fail =>" + `${loader.file.name}.`);
+            //                 },
+            //                 fn_abort: reject
+            //             });
+            //         });
+            //     };
+            //     this.abort = function () {
+            //         return this.xhr.abort && this.xhr.abort();
+            //     }
+            // };
 
             ClassicEditor
                 .create( document.querySelector( '#editor' ),{
-                    simpleUpload: {
-                        uploadUrl: ''
+                    ckfinder: {
+                        uploadUrl: '/base/ckeditor/fileUpload'
                     }
                 })
+                // .then(function (editor) {
+                //     editoro = editor;
+                //     editor.plugins.get("FileRepository").createUploadAdapter = function (loader) {
+                //         return new CustomUploadAdapter(loader, "/images/board/press", function (result) {
+                //             const fileSeq = isEmpty(result[0]) ? "noimage" : result[0];
+                //             const imageUrl = window.location.protocol + "//" + window.location.host + "/image/" + fileSeq;
+                //             return {"default" : imageUrl};
+                //         });
+                //     };
+                // })
                 .catch( error => {
                     console.error( error );
                 } );
+
 
 
             $('#table').bootstrapTable('destroy').bootstrapTable({
@@ -92,8 +174,8 @@
                         width: 40,
                         align: 'center'
                     },{
-                        title: '게시판 타입',
-                        field: '2',
+                        title: '게시판 유형',
+                        field: 'type',
                         align: 'center'
                     },{
                         title: '게시판 카테고리',
@@ -118,12 +200,31 @@
 
         <script>
             $(function(){
+                $("#btn_save").on({
+                    click:function(){
+                        if( !$("#postType").val() ){
+                            alert("게시판 유형을 선택해주세요.");
+                            return false;
+                        }
+
+                        const param = "";
+                        commAjax.post("<c:url value='/admin/board/regist'/>", param)
+                            .then(function(result){
+                                if(!result.error){
+                                    alert("등록되었습니다.");
+                                }
+                                else{
+                                    alert("오류가 발생하였습니다.");
+                                }
+                            });
+
+                    }
+                });
                 $('#table').on('click-row.bs.table', function (e, rowData) {
                     console.log(e,rowData);
                     $("#modalPost").modal("show");
                 });
             });
-
         </script>
     </th:block>
 

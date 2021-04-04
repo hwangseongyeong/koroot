@@ -20,6 +20,11 @@ public class BoardApiController {
         return boardService.getBoardList(type);
     }
 
+    @GetMapping("/api/board/listAll")
+    public List<Board> getBoardListAll() {
+        return boardService.getBoardListAll();
+    }
+
     @GetMapping("/api/board")
     public Board getBoard(Long boardId) {
         return boardService.getBoard(boardId);

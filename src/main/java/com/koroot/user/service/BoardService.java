@@ -21,6 +21,10 @@ public class BoardService {
                 .orElse(Collections.emptyList());
     }
 
+    public List<Board> getBoardListAll(){
+        return boardRepository.findAllByOrderByBoardIdDesc().orElse(Collections.emptyList());
+    }
+
     public Board getBoard(long boardId){
         return boardRepository.findById(boardId)
                 .orElse(null);
