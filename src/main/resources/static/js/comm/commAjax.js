@@ -16,7 +16,7 @@ $.ajaxSetup({
 var commAjax = {
 	get: function(url, param){
 		return new Promise(function(resolve, reject) {
-
+			console.log("!FormData", param, JSON.stringify(param));
 			var ajaxObject = {
 			    async : false,
 				type: "GET",

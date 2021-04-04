@@ -20,7 +20,7 @@
                    data-search="true"
                    data-show-columns="true"
                    data-halign="center"
-                   data-url="/admin/api/board/listAll"
+                   data-url="/admin/api/boardListAll"
             >
             </table>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -90,67 +90,6 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 
         <script type="text/javascript">
-            // function ajax_file_upload(p) {
-            //     if (!p.files || !p.loader || !p.path) return new XMLHttpRequest;
-            //     const formData = new FormData();
-            //     for (const idx in p.files) {
-            //         formData.append("uploadfile", p.files[idx]);
-            //     }
-            //     formData.append("path", p.path);
-            //
-            //     return $.ajax({
-            //         url: '/api/common/fileupload',
-            //         processData: false,
-            //         contentType: false,
-            //         data: formData,
-            //         type: 'POST',
-            //         onprogress: function (e) {
-            //             p.fn_progress && p.fn_progress(e);
-            //         },
-            //         success: function(e){
-            //             p.fn_success && p.fn_success(e);
-            //         },
-            //         error: function (e) {
-            //             p.fn_error && p.fn_error;
-            //         },
-            //         abort: function (e) {
-            //             p.fn_abort && p.fn_abort(e);
-            //         }
-            //     });
-            // }
-
-            // var CustomUploadAdapter = function (loader, path, fn_resolve) {
-            //     this.constructor = function ( loader ) {
-            //         this.loader = loader;
-            //         this.path = path;
-            //         this.fn_resolve = fn_resolve;
-            //     };
-            //     this.upload = function () {
-            //         return new Promise(function (resolve, reject) {
-            //             this.xhr = ajax_file_upload({
-            //                 loader: loader,
-            //                 resolve: resolve,
-            //                 reject: reject,
-            //                 files: [loader.file],
-            //                 path: path,
-            //                 fn_progress: function (e) {
-            //                     e.lengthComputable && (loader.uploadTotal = e.total, loader.uploaded = e.loaded);
-            //                 },
-            //                 fn_success: function (e) {
-            //                     resolve(fn_resolve && fn_resolve(e));
-            //                 },
-            //                 fn_error: function (e) {
-            //                     reject("upload fail =>" + `${loader.file.name}.`);
-            //                 },
-            //                 fn_abort: reject
-            //             });
-            //         });
-            //     };
-            //     this.abort = function () {
-            //         return this.xhr.abort && this.xhr.abort();
-            //     }
-            // };
-
             let editor;
             ClassicEditor
                 .create( document.querySelector( '#contents' ),{
@@ -159,57 +98,45 @@
                     // }
                 }).then( newEditor => {
                 editor = newEditor;
-                })
-                // .then(function (editor) {
-                //     editoro = editor;
-                //     contents.plugins.get("FileRepository").createUploadAdapter = function (loader) {
-                //         return new CustomUploadAdapter(loader, "/images/board/press", function (result) {
-                //             const fileSeq = isEmpty(result[0]) ? "noimage" : result[0];
-                //             const imageUrl = window.location.protocol + "//" + window.location.host + "/image/" + fileSeq;
-                //             return {"default" : imageUrl};
-                //         });
-                //     };
-                // })
+            })
                 .catch( error => {
                     console.error( error );
                 } );
 
-            $('#table').bootstrapTable('destroy').bootstrapTable({
-                height: 578,
-                locale: "ko-KR",
-                columns: [
-                    {
-                        title: '게시글ID',
-                        field: 'boardId',
-                        width: 40,
-                        align: 'center'
-                    },{
-                        title: '게시판 유형',
-                        field: 'type',
-                        align: 'center'
-                    },{
-                        title: '게시판 카테고리',
-                        field: 'category',
-                        align: 'center'
-                    },{
-                        title: '제목',
-                        field: 'title',
-                        align: 'center'
-                    },{
-                        title: '등록일',
-                        field: 'createdAt',
-                        align: 'center'
-                    },{
-                        title: '조회수',
-                        field: 'hits',
-                        align: 'center'
-                    }
-                ]
-            });
-        </script>
-
-        <script>
             $(function(){
+                $('#table').bootstrapTable('destroy').bootstrapTable({
+                    height: 578,
+                    locale: "ko-KR",
+                    columns: [
+                        {
+                            title: '게시글ID',
+                            field: 'boardId',
+                            width: 40,
+                            align: 'center'
+                        },{
+                            title: '게시판 유형',
+                            field: 'type',
+                            align: 'center'
+                        },{
+                            title: '게시판 카테고리',
+                            field: 'category',
+                            align: 'center'
+                        },{
+                            title: '제목',
+                            field: 'title',
+                            align: 'center'
+                        },{
+                            title: '등록일',
+                            field: 'createdAt',
+                            align: 'center'
+                        },{
+                            title: '조회수',
+                            field: 'hits',
+                            align: 'center'
+                        }
+                    ]
+                });
+
                 $("#saveBtn").on({
                     click:function(){
                         if( !$("#type").val() ){
@@ -217,28 +144,48 @@
                             return false;
                         }
 
-                        const params = {
+                        commAjax.post("/admin/api/boardCreate", {
                             "type": $("#type").val(),
                             "title": $("#title").val(),
                             "contents": editor.getData()
-                        }
-                        commAjax.post("/admin/api/boardCreate", params)
-                            .then(function(result){
-                                if(!result.error){
-                                    alert("등록되었습니다.");
-                                }
-                                else{
-                                    alert("오류가 발생하였습니다.");
-                                }
-                            });
-
+                        })
+                        .then(function(result){
+                            if(!result.error){
+                                alert("등록되었습니다.");
+                            }
+                            else{
+                                alert("오류가 발생하였습니다.");
+                            }
+                        });
                     }
                 });
                 $('#table').on('click-row.bs.table', function (e, rowData) {
                     console.log(e,rowData);
-                    $("#modalPost").modal("show");
+
+                    const params = {
+                        "boardId": rowData.boardId
+                    }
+
+                    commAjax.get("/admin/api/boardFindOne", params)
+                    .then(function(result){
+                        if(!result.error){
+                            console.log("result :: ", result);
+                            $("#modalPost").modal("show");
+
+                            setBoardData(result);
+                        }
+                        else{
+                            alert("오류가 발생하였습니다.");
+                        }
+                    });
                 });
             });
+
+            function setBoardData(result){
+                $("#type").val(result.type);
+                $("#title").val(result.title);
+                editor.setData(result.contents);
+            }
         </script>
     </th:block>
 

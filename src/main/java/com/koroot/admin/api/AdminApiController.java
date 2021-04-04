@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @RestController
 public class AdminApiController {
@@ -25,13 +26,18 @@ public class AdminApiController {
         return boardService.getBoardList(BoardType.NOTICE);
     }
 
-    @GetMapping("/admin/api/board/listAll")
+    @GetMapping( value="/admin/api/boardFindOne", produces="application/json")
+    public Board getBoardFindOne(  BoardDto reqDto ) throws Exception {
+        return adminBoardService.getBoardFindOne(reqDto.getBoardId());
+    }
+
+    @GetMapping("/admin/api/boardListAll")
     public List<Board> getBoardListAll() {
         return boardService.getBoardListAll();
     }
 
     @PostMapping("/admin/api/boardCreate")
-    public Board createBoard( @RequestBody BoardDto reqDto) {
+    public Board createBoard( @RequestBody BoardDto reqDto ) {
         return adminBoardService.createBoard(reqDto);
     }
 
