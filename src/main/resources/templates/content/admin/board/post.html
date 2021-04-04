@@ -20,17 +20,7 @@
                    data-show-columns="true"
                    data-halign="center"
                    data-url="/api/communication/noticeList"
-                   data-click-to-select="test"
             >
-                <thead>
-                <tr>
-                    <th class="me-sm-1" data-field="noticeId" data-halign="center" data-align="center">번호</th>
-                    <th data-field="title" data-halign="center" data-align="center">제목</th>
-                    <th data-field="writer" data-halign="center" data-align="center">작성자</th>
-                    <th data-field="writer" data-halign="center" data-align="center">등록일</th>
-                    <th data-field="writer" data-halign="center" data-align="center">조회수</th>
-                </tr>
-                </thead>
             </table>
 
         </div>
@@ -80,6 +70,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 
         <script type="text/javascript">
+
             ClassicEditor
                 .create( document.querySelector( '#editor' ),{
                     simpleUpload: {
@@ -89,6 +80,40 @@
                 .catch( error => {
                     console.error( error );
                 } );
+
+
+            $('#table').bootstrapTable('destroy').bootstrapTable({
+                height: 578,
+                locale: "ko-KR",
+                columns: [
+                    {
+                        title: '게시글ID',
+                        field: 'boardId',
+                        width: 40,
+                        align: 'center'
+                    },{
+                        title: '게시판 타입',
+                        field: '2',
+                        align: 'center'
+                    },{
+                        title: '게시판 카테고리',
+                        field: 'category',
+                        align: 'center'
+                    },{
+                        title: '제목',
+                        field: 'title',
+                        align: 'center'
+                    },{
+                        title: '등록일',
+                        field: 'createdAt',
+                        align: 'center'
+                    },{
+                        title: '조회수',
+                        field: 'hits',
+                        align: 'center'
+                    }
+                ]
+            });
         </script>
 
         <script>
@@ -111,6 +136,10 @@
         }
         .ck-editor__editable_inline {
             min-height: 400px;
+        }
+        .bootstrap-table .fixed-table-container .fixed-table-body {
+            overflow: hidden;
+            position: relative;
         }
     </style>
 </div>
