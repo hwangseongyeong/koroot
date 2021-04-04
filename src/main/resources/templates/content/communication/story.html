@@ -7,9 +7,31 @@
 
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-            김도현 목사의 해외입양 이야기 - 작업중
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3><span>김도현 목사의 해외입양 이야기</span></h3>
+                </div>
+            </div>
+            <table id="table"
+                   data-toggle="table"
+                   data-pagination="true"
+                   data-search="true"
+                   data-show-columns="true"
+                   data-halign="center"
+                   data-url="/api/board/list?type=STORY"
+                   data-click-to-select="test"
+            >
+            </table>
         </div>
     </section>
+
+    <th:block layout:fragment="script">
+        <script>
+            $(function() {
+                initTable()
+            })
+        </script>
+    </th:block>
 
 </div>
 

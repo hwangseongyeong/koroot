@@ -4,12 +4,33 @@
       layout:decorator="layout/default">
 
 <div layout:fragment="content">
-
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-            발간자료 - 작업중
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3><span>발간자료</span></h3>
+                </div>
+            </div>
+            <table id="table"
+                   data-toggle="table"
+                   data-pagination="true"
+                   data-search="true"
+                   data-show-columns="true"
+                   data-halign="center"
+                   data-url="/api/board/list?type=PUBLICATION"
+                   data-click-to-select="test"
+            >
+            </table>
         </div>
     </section>
+
+    <th:block layout:fragment="script">
+        <script>
+            $(function() {
+                initTable()
+            })
+        </script>
+    </th:block>
 
 </div>
 

@@ -13,7 +13,7 @@
                     <h3><span>공지사항</span></h3>
                 </div>
             </div>
-            <table id="noticeTable"
+            <table id="table"
                    data-toggle="table"
                    data-pagination="true"
                    data-search="true"
@@ -23,56 +23,14 @@
                    data-click-to-select="test"
             >
             </table>
-
         </div>
     </section>
 
     <th:block layout:fragment="script">
         <script>
-            const $table = $('#noticeTable');
-
-            function initTable() {
-                $table.bootstrapTable('destroy').bootstrapTable({
-                    height: 550,
-                    locale: 'ko-KR',
-                    columns: [
-                        {
-                            title: '번호',
-                            field: 'noticeId',
-                            align: 'center',
-                            width: 10
-                        }, {
-                            title: '제목',
-                            field: 'title',
-                            align: 'center',
-                            width: 50
-                        }, {
-                            title: '작성자',
-                            field: 'createdBy',
-                            align: 'center',
-                            width: 10
-                        }, {
-                            title: '등록일',
-                            field: 'createdDt',
-                            align: 'center',
-                            width: 20
-                        }, {
-                            title: '조회수',
-                            field: 'hits',
-                            align: 'center',
-                            width: 10
-                        }
-                    ]
-                })
-            }
-
             $(function() {
                 initTable();
-                $table.on('click-row.bs.table', function (e, rowData) {
-                    console.log(e,rowData);
-                });
             })
-
         </script>
     </th:block>
 
