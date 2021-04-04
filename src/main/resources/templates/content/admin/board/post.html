@@ -36,37 +36,7 @@
         </div>
     </section>
 
-    <th:block layout:fragment="script">
-        <script th:src="@{/js/communication/notice.js}"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
-
-        <script type="text/javascript">
-            // CKEDITOR.replace('p_content'
-            //     , {height: 500
-            //     });
-        </script>
-
-        <script>
-            $(function(){
-                $('#table').on('click-row.bs.table', function (e, rowData) {
-                    console.log(e,rowData);
-                    $('#modalPost').show();
-                });
-            });
-
-        </script>
-    </th:block>
-
-    <style type="text/css">
-        .page-link {
-            color:#000000
-        }
-        .page-item.active .page-link{
-            background-color:#48bd2b
-        }
-    </style>
-
-    <div id="modalPost" class="modal" tabindex="-1">
+    <div id="modalPost" class="modal fade" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,7 +60,7 @@
                         <tr>
                             <th class="w-25">내용</th>
                             <td class="w-auto">
-                                <textarea class="form-control" id="p_content"></textarea>
+                                <textarea class="form-control" id="editor"></textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -104,6 +74,45 @@
             </div>
         </div>
     </div>
+
+    <th:block layout:fragment="script">
+<!--        <script th:src="@{/js/communication/notice.js}"></script>-->
+        <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+
+        <script type="text/javascript">
+            ClassicEditor
+                .create( document.querySelector( '#editor' ),{
+                    simpleUpload: {
+                        uploadUrl: ''
+                    }
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
+        <script>
+            $(function(){
+                $('#table').on('click-row.bs.table', function (e, rowData) {
+                    console.log(e,rowData);
+                    $("#modalPost").modal("show");
+                });
+            });
+
+        </script>
+    </th:block>
+
+    <style type="text/css">
+        .page-link {
+            color:#000000
+        }
+        .page-item.active .page-link{
+            background-color:#48bd2b
+        }
+        .ck-editor__editable_inline {
+            min-height: 400px;
+        }
+    </style>
 </div>
 
 </html>
