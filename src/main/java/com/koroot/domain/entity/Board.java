@@ -22,7 +22,8 @@ public class Board {
     private String category;
     private String title;
     private String contents;
-    private Integer hits;
+
+    private Integer hits = 0;
     private String createdBy;
     @Column(updatable = false)
     private LocalDateTime createdAt;

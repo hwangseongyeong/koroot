@@ -31,6 +31,7 @@
     </section>
 
     <div id="modalPost" class="modal fade" tabindex="-1" aria-hidden="true">
+        <form id="saveFrm"  method="post">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,7 +45,7 @@
                         <tr>
                             <th class="w-25">게시물 TYPE</th>
                             <td class="w-auto">
-                                <select id="postType" name="postType">
+                                <select id="type" name="type" class="form-select">
                                     <option value="">선택해주세요.</option>
                                     <option value="NOTICE">공지 사항</option>
                                     <option value="ACCOUNTING">투명한 재정, 회계 보고</option>
@@ -60,9 +61,17 @@
                             </td>
                         </tr>
                         <tr>
+                            <th class="w-25">제목</th>
+                            <td class="w-auto">
+                                <div class="input-group mb-3">
+                                    <input id="title" name="title" type="text" class="form-control">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <th class="w-25">내용</th>
                             <td class="w-auto">
-                                <textarea class="form-control" id="editor"></textarea>
+                                <textarea id="contents" class="form-control"></textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -71,11 +80,11 @@
                 </div>
                 <div class="modal-footer">
                     <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalPost">닫기</button>
-                    <button id="btnSave" type="button" class="btn btn-primary">저장</button>
+                    <button id="saveBtn" type="button" class="btn btn-primary">저장</button>
                 </div>
             </div>
-        </div>s
-
+        </div>
+        </form>
     <th:block layout:fragment="script">
 <!--        <script th:src="@{/js/communication/notice.js}"></script>-->
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
@@ -142,15 +151,18 @@
             //     }
             // };
 
+            let editor;
             ClassicEditor
-                .create( document.querySelector( '#editor' ),{
-                    ckfinder: {
-                        uploadUrl: '/base/ckeditor/fileUpload'
-                    }
+                .create( document.querySelector( '#contents' ),{
+                    // ckfinder: {
+                    //     uploadUrl: '/base/ckeditor/fileUpload'
+                    // }
+                }).then( newEditor => {
+                editor = newEditor;
                 })
                 // .then(function (editor) {
                 //     editoro = editor;
-                //     editor.plugins.get("FileRepository").createUploadAdapter = function (loader) {
+                //     contents.plugins.get("FileRepository").createUploadAdapter = function (loader) {
                 //         return new CustomUploadAdapter(loader, "/images/board/press", function (result) {
                 //             const fileSeq = isEmpty(result[0]) ? "noimage" : result[0];
                 //             const imageUrl = window.location.protocol + "//" + window.location.host + "/image/" + fileSeq;
@@ -161,8 +173,6 @@
                 .catch( error => {
                     console.error( error );
                 } );
-
-
 
             $('#table').bootstrapTable('destroy').bootstrapTable({
                 height: 578,
@@ -200,15 +210,19 @@
 
         <script>
             $(function(){
-                $("#btn_save").on({
+                $("#saveBtn").on({
                     click:function(){
-                        if( !$("#postType").val() ){
+                        if( !$("#type").val() ){
                             alert("게시판 유형을 선택해주세요.");
                             return false;
                         }
 
-                        const param = "";
-                        commAjax.post("<c:url value='/admin/board/regist'/>", param)
+                        const params = {
+                            "type": $("#type").val(),
+                            "title": $("#title").val(),
+                            "contents": editor.getData()
+                        }
+                        commAjax.post("/admin/api/boardCreate", params)
                             .then(function(result){
                                 if(!result.error){
                                     alert("등록되었습니다.");

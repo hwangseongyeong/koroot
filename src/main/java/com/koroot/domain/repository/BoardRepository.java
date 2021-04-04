@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     Optional<List<Board>> findAllByTypeOrderByBoardIdDesc(BoardType type);
     Optional<List<Board>> findAllByOrderByBoardIdDesc();
-
 }

@@ -1,10 +1,14 @@
 package com.koroot.admin.api;
 
+import com.koroot.admin.model.BoardDto;
+import com.koroot.admin.service.AdminBoardService;
 import com.koroot.domain.entity.Board;
 import com.koroot.user.service.BoardService;
 import com.koroot.user.type.BoardType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,6 +18,7 @@ import java.util.List;
 public class AdminApiController {
 
     private final BoardService boardService;
+    private final AdminBoardService adminBoardService;
 
     @GetMapping("/admin/api/boardList")
     public List<Board> getBoardList() {
@@ -25,8 +30,9 @@ public class AdminApiController {
         return boardService.getBoardListAll();
     }
 
-    @GetMapping("/admin/api/boardCreate")
-    public Board createBoard() {
-        return boardService.createBoard();
+    @PostMapping("/admin/api/boardCreate")
+    public Board createBoard( @RequestBody BoardDto reqDto) {
+        return adminBoardService.createBoard(reqDto);
     }
+
 }

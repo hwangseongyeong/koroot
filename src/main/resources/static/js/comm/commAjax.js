@@ -1,15 +1,15 @@
 $.ajaxSetup({
 	beforeSend: function(xhr) {
 		console.log("beforeSend==========>");
-		common.blockUI();
+		// common.blockUI();
 	},
 	complete : function(xhr,status) {
 		console.log("complete==========>", status);
-		common.unblockUI();
+		// common.unblockUI();
 	},
 	error : function(xhr,status,error){
 		console.log("error==========>");
-		common.unblockUI();
+		// common.unblockUI();
 	}
 });
 
@@ -76,7 +76,7 @@ var commAjax = {
 			}
 			// when json
 			else {
-				console.log("!FormData");
+				console.log("!FormData", param, JSON.stringify(param));
 				ajaxObject['contentType'] = "application/json; charset=utf-8";
 				ajaxObject['data'] = JSON.stringify(param);
 			}
