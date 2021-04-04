@@ -17,32 +17,32 @@ function initTable() {
                 title: '번호',
                 field: 'boardId',
                 align: 'center',
-                width: 20,
+                width: 50,
                 sortable: true
             }, {
                 title: '제목',
                 field: 'title',
                 align: 'center',
-                width: 100,
+                width: 500,
                 sortable: true
             }, {
                 title: '작성자',
                 field: 'createdBy',
                 align: 'center',
-                width: 20,
+                width: 50,
                 sortable: true
             }, {
                 title: '등록일',
                 field: 'createdAt',
                 align: 'center',
-                width: 20,
                 formatter: dateFormatter,
+                width: 50,
                 sortable: true
             }, {
                 title: '조회수',
                 field: 'hits',
                 align: 'center',
-                width: 20,
+                width: 50,
                 sortable: true
             }
         ]
