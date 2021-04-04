@@ -1,4 +1,4 @@
-package com.koroot.admin.api;
+package com.koroot.user.api;
 
 import com.koroot.domain.entity.Board;
 import com.koroot.user.service.BoardService;
@@ -11,17 +11,17 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class AdminApiController {
+public class BoardApiController {
 
     private final BoardService boardService;
 
-    @GetMapping("/admin/api/boardList")
-    public List<Board> getBoardList() {
-        return boardService.getBoardList(BoardType.NOTICE);
+    @GetMapping("/api/board/list")
+    public List<Board> getBoardList(BoardType type) {
+        return boardService.getBoardList(type);
     }
 
-    @GetMapping("/admin/api/boardCreate")
-    public Board createBoard() {
-        return boardService.createBoard();
+    @GetMapping("/api/board")
+    public Board getBoard(Long boardId) {
+        return boardService.getBoard(boardId);
     }
 }

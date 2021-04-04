@@ -41,4 +41,8 @@ public class Board {
         this.createdAt = LocalDateTime.now();
         this.modifiedAt = LocalDateTime.now();
     }
+
+    public void updateHits(int hits) {
+        this.hits = hits;
+    }
 }
