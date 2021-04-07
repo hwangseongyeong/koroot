@@ -62,6 +62,43 @@
             </div>
         </section><!-- End Featured Services Section -->
 
+        <!-- ======= notice Section ======= -->
+        <section class="featured-services">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div id="board">
+                            <h4 class="title"><a href="">공지사항</a></h4>
+                            <div th:each="board : ${boardList}">
+                                <a th:href="@{/board/detail(boardId=${board.boardId},type='NOTICE')}" style="color: black;">
+                                    <p th:text="${board.title}"></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/DM0WNj48mtE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="row" style="padding: 10px">
+                            <button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">후원신청>></button>
+                            <button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">자원활동신청>></button>
+                        </div>
+                        <div class="row" style="padding: 10px">
+                            <button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">연차보고서>></button>
+                            <button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">재정회계보고>></button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- notice Section -->
+
         <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials">
             <div class="container" data-aos="zoom-in">

@@ -2,8 +2,12 @@ package com.koroot.user.service;
 
 import com.koroot.domain.entity.Board;
 import com.koroot.domain.repository.BoardRepository;
+import com.koroot.user.model.BoardSearch;
 import com.koroot.user.type.BoardType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +23,12 @@ public class BoardService {
     public List<Board> getBoardList(BoardType type){
         return boardRepository.findAllByTypeOrderByBoardIdDesc(type)
                 .orElse(Collections.emptyList());
+    }
+
+    public Page<Board> getBoardSearch(BoardSearch search){
+        Pageable pageable = PageRequest.of(search.getOffset()/search.getLimit(), search.getLimit());
+        Page<Board> page = boardRepository.findAllSearch(pageable, search.getType(), search.getSearch());
+        return page;
     }
 
     public List<Board> getBoardListAll(){

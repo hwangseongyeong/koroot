@@ -17,38 +17,35 @@ function initTable() {
                 title: '번호',
                 field: 'boardId',
                 align: 'center',
-                width: 50,
-                sortable: true
+                width: 50
             }, {
                 title: '제목',
                 field: 'title',
-                align: 'center',
-                width: 500,
-                sortable: true
+                align: 'left',
+                halign: 'center',
+                width: 500
             }, {
                 title: '작성자',
                 field: 'createdBy',
                 align: 'center',
-                width: 50,
-                sortable: true
+                width: 50
             }, {
                 title: '등록일',
                 field: 'createdAt',
                 align: 'center',
                 formatter: dateFormatter,
-                width: 50,
-                sortable: true
+                width: 50
             }, {
                 title: '조회수',
                 field: 'hits',
                 align: 'center',
-                width: 50,
-                sortable: true
+                width: 50
             }
         ]
     });
 
     $table.on('click-row.bs.table', function (e, rowData) {
-        console.log(e,rowData);
+        let type = $('#boardType').val();
+        location.href="/board/detail?boardId=" + rowData.boardId + "&type=" + type;
     });
 }

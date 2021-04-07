@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Entity
@@ -45,5 +46,9 @@ public class Board {
 
     public void updateHits(int hits) {
         this.hits = hits;
+    }
+
+    public String getCreateDate(){
+        return this.createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

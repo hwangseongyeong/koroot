@@ -7,39 +7,20 @@
 
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-2">제목</div>
-                    <div class="col">제목제목제목</div>
+            <article class="board-detail">
+                <hgroup>
+                    <em th:text="${type.name}"></em>
+                    <strong th:text="${board.title}"></strong>
+                    <i th:text="${board.createDate}"></i>
+                </hgroup>
+                <div class="con" th:utext="${board.contents}">
                 </div>
-                <div class="row">
-                    <div class="col-2">제목</div>
-                    <div class="col">제목제목제목</div>
-                </div>
-                <div class="row">
-                    <div class="col-2">제목</div>
-                    <div class="col">제목제목제목</div>
-                </div>
-                <div class="row">
-                    <div class="col-2">제목</div>
-                    <div class="col">제목제목제목</div>
-                </div>
-                <div>
-                    테스트
-                </div>
-            </div>
-
+            </article>
+            <article class="board-btns">
+                <a th:href="@{/board/list(type='NOTICE')}" class="btn-go-list">목록으로</a>
+            </article>
         </div>
     </section>
-
-    <th:block layout:fragment="script">
-        <script>
-            $(function() {
-
-            })
-        </script>
-    </th:block>
 
 </div>
 
