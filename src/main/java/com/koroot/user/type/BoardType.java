@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum BoardType {
     NOTICE("공지 사항"),
+    ANNUAL("연차보고서"),
     ACCOUNTING("투명한 재정, 회계 보고"),
     IMAGE("이미지"),
     BOOK_STORY("책 이야기"),

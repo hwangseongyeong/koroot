@@ -38,20 +38,6 @@ public class IntroController {
         return "content/intro/people";
     }
     /**
-     * 연차 보고서
-     */
-    @GetMapping("/intro/annual")
-    public String annual(){
-        return "content/intro/annual";
-    }
-    /**
-     * 투명한재정,회계보고
-     */
-    @GetMapping("/intro/accounting")
-    public String accounting(){
-        return "content/intro/accounting";
-    }
-    /**
      * 찾아오시는 길
      */
     @GetMapping("/intro/directions")

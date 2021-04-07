@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -35,9 +36,11 @@ public class BoardService {
         return boardRepository.findAllByOrderByBoardIdDesc().orElse(Collections.emptyList());
     }
 
+    @Transactional
     public Board getBoard(long boardId){
-        return boardRepository.findById(boardId)
-                .orElse(null);
+        Optional<Board> board =  boardRepository.findById(boardId);
+        board.ifPresent(it -> it.updateHits());
+        return board.orElseGet(null);
     }
 
     @Transactional

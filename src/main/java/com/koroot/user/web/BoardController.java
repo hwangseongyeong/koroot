@@ -27,10 +27,8 @@ public class BoardController {
      */
     @GetMapping("/board/detail")
     public String boardDetail(Model model, Long boardId, BoardType type){
-        Board board = boardService.getBoard(boardId);
-        board.updateHits();
         model.addAttribute("type", type);
-        model.addAttribute("board", board);
+        model.addAttribute("board", boardService.getBoard(boardId));
         return "content/board/boardDetail";
     }
 }

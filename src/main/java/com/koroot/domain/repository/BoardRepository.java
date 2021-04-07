@@ -19,6 +19,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
             + "from Board board "
             + "where board.type = :type "
             + "and (:#{#search} is null or board.title like concat('%',:#{#search},'%'))"
-            + "order by board.boardId desc ")
+            + "order by board.createdAt desc ")
     Page<Board> findAllSearch(Pageable pageable, BoardType type, String search);
 }
