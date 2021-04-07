@@ -1,3 +1,5 @@
+const boardType = $('#boardType').val();
+
 function dateFormatter(value) {
     let d = new Date(value)
     let month = '' + (d.getMonth() + 1);
@@ -11,6 +13,7 @@ function dateFormatter(value) {
 function initTable() {
     const $table = $('#table');
     $table.bootstrapTable('destroy').bootstrapTable({
+        url: '/api/board/list?type=' + boardType,
         locale: "ko-KR",
         columns: [
             {
@@ -45,7 +48,6 @@ function initTable() {
     });
 
     $table.on('click-row.bs.table', function (e, rowData) {
-        let type = $('#boardType').val();
-        location.href="/board/detail?boardId=" + rowData.boardId + "&type=" + type;
+        location.href="/board/detail?boardId=" + rowData.boardId + "&type=" + boardType;
     });
 }

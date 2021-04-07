@@ -19,5 +19,5 @@ public enum BoardType {
     STORY("김도현 목사의 해외입양 이야기"),
     ;
 
-    private String name;
+    private String desc;
 }

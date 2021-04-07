@@ -11,7 +11,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3><span th:text="${type.name}"></span></h3>
+                    <h3><span th:text="${type.desc}"></span></h3>
                 </div>
             </div>
             <table id="table"
@@ -21,7 +21,6 @@
                    data-show-columns="true"
                    data-side-pagination="server"
                    data-page-list="[10, 25, 50, 100, all]"
-                   data-url="/api/board/list?type=NOTICE"
             >
             </table>
         </div>
