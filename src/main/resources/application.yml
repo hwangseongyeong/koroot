@@ -14,33 +14,16 @@ spring:
     hibernate:
       ddl-auto: none
       use-new-id-generator-mappings: false
-
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/koroot?serverTimezone=UTC&characterEncoding=UTF-8
-#    username: admin2017
-#    password: admin2017
-
+# local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
     username: koroot2452
     password: koroot2451
 
+# prod
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
 #    username: koroot2452
 #    password: koroot2451
-
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
-    username: koroot2452
-    password: koroot2451

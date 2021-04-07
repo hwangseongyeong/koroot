@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<div layout:fragment="content" style="margin : 2.0em">
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <div>
+                <h2>해외입양인의 권익옹호를 위한 활동을 하는 뿌리의집에 후원자로 함께해주세요!</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <br/>
+                    <p>
+                        <h3>후원안내</h3>
+                    </p>
+
+                    <p>
+                        많을 때는 한 해에 400여명, 적을 때는 200여명의 입양인이 뿌리의집에 머물러 자고, 먹고, 기쁨과 슬픔을 나누었다. 그동안 거의 4천명에 이르는 모국을 방문하는 &lt;해외입양인들의 여행자 생활공동체&gt;로 살아왔다고 할 수 있다. 뿌리의집이 처음부터 사회복지기관이 되려고 한 것
+                        도 아니고, 지금도 아니지만, 여성주의 사회복지의 렌즈에 비추어서 보면 이런 생활공동체를 통해서 사람들이 내면을 더 풍부하게 가꾸고 우정과 상호지지를 가꾸는 삶이란 그 자체로 소중한 가치를 지닌다고 볼 수 있다. 그런 점에서는 지난날 이 곳에 머물다 간 사람들의 삶 속에 이미
+                        열매로 열려 있다고 해도 과언이 아니리라.
+                    </p>
+
+                    <p>
+                        뿌리의집은 기획재정부가 지정한 기부금지정대상단체로 법인세법 제24조 및 소득세법 제34조에 근거하여 연말정산 시 세액공제혜택을 받으실 수 있습니다.
+                    </p><br/>
+
+                    <p style="text-align: center;">
+                        <button id="supportApplication" style="background-color: #3b8540;">후원 신청하기</button>
+                    </p><br/>
+
+                    <p>
+                        | 납부안내 |<br/>
+                        -CMS자동납부 시 후원금은 매월 24일(주말 또는 공휴일인 경우 전 영업일)에 계좌에서 출금됩니다.<br/>
+                        -카드 납부시 2.8% 수수료가 공제된 후 입금됩니다.<br/>
+                    </p><br/>
+
+                    <p>
+                        | 계좌안내 | <br/>
+                        -개별 입금 및 은행 자동이체 등록 : 직접 입금 및 자동이체 등록 시 아래 후원계좌를 참고해주십시오.<br/>
+                        신한은행 : 100-019-570796 예금주 : 뿌리의집<br/>
+                        국민은행 : 343601-04-006975 예금주 : 뿌리의집<br/>
+                    </p><br/>
+
+                    <p>
+                        | 후원문의 |<br/>
+                        전화 02-3210-2451  이메일 admin@koroot.org<br/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script>
+            $(function() {
+                $("#supportApplication").on({
+                    click:function(){
+                        location.href = "https://webcm30.webcm.co.kr/system/member_signup/join_option_select_03.html?id=koroot0";
+                    }
+                });
+            })
+        </script>
+    </th:block>
+
+</div>
+
+</html>

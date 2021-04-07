@@ -44,8 +44,8 @@ public class Board {
         this.modifiedAt = LocalDateTime.now();
     }
 
-    public void updateHits(int hits) {
-        this.hits = hits;
+    public void updateHits() {
+        this.hits++;
     }
 
     public String getCreateDate(){

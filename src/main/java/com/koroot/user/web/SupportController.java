@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SupportController {
 
     /**
-     * 후원 현황
+     * 후원 안내
      */
-    @GetMapping("/support/status")
-    public String status(){
-        return "content/support/status";
+    @GetMapping("/support/guide")
+    public String guide(){
+        return "content/support/guide";
     }
+
     /**
      * 자원활동하기
      */

@@ -10,20 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CommunicationController {
 
     /**
-     * 공지
-     */
-    @GetMapping("/communication/notice")
-    public String main(){
-        return "content/communication/notice";
-    }
-    /**
-     * 언론보도
-     */
-    @GetMapping("/communication/press")
-    public String press(){
-        return "content/communication/press";
-    }
-    /**
      * 해외입양인 목소리
     */
     @GetMapping("/communication/voice")
