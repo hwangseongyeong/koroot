@@ -24,7 +24,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model){
-        BoardSearch search = new BoardSearch(0, 5, "", BoardType.NOTICE);
+        BoardSearch search = new BoardSearch(0, 7, "", BoardType.NOTICE);
         List<Board> boardList = boardService.getBoardSearch(search).getContent();
         model.addAttribute("boardList", boardList);
         return "content/main/main";

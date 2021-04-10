@@ -1785,7 +1785,7 @@ section {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 300px;
+  width: 30em;
 }
 
 .board-detail{ max-width: 920px;margin:0 auto; }
