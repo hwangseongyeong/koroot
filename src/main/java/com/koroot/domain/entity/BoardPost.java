@@ -46,8 +46,9 @@ public class BoardPost {
         this.modifiedAt = LocalDateTime.now();
     }
 
-    public void delete(String writer){
+    public void updateDeleted(String writer){
         this.deleted = true;
+        this.modifiedBy = writer;
         this.modifiedAt = LocalDateTime.now();
     }
 

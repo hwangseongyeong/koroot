@@ -1,7 +1,8 @@
 const $adminTable = $('#adminTable');
+const boardInfoId = $('#boardInfoId').val();
 
-function initAdminTable(boardInfoId) {
-    let url = '/api/board/list?boardInfoId=' + boardInfoId
+function initAdminTable(id) {
+    let url = '/api/board/list?boardInfoId=' + id;
     $adminTable.bootstrapTable('destroy').bootstrapTable({
         url: url,
         locale: "ko-KR",
@@ -43,7 +44,7 @@ function initAdminTable(boardInfoId) {
 }
 
 $(function() {
-    initAdminTable('0');
+    initAdminTable(boardInfoId);
 
     $("#boardSelect").on({
         change:function(){

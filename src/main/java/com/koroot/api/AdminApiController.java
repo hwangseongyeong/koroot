@@ -26,4 +26,9 @@ public class AdminApiController {
         return boardService.updateBoard(reqData, mainImage);
     }
 
+    @DeleteMapping
+    public boolean deleteBoard(Long boardPostId) {
+        return boardService.deleteBoard(boardPostId);
+    }
+
 }

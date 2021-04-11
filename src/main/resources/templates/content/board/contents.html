@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<div layout:fragment="content" style="margin : 2.0em">
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <div th:utext="${boardPost.contents}">
+
+            </div>
+        </div>
+    </section>
+</div>
+
+</html>

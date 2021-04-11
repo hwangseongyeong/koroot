@@ -111,7 +111,9 @@ public class BoardService {
     @Transactional
     public boolean deleteBoard(Long boardPostId) {
         boardPostRepository.findById(boardPostId)
-                .ifPresent(it -> it.delete(BoardPost.BOARD_WRITER));
+                .ifPresent(it -> {
+                    it.updateDeleted(BoardPost.BOARD_WRITER);
+                });
         return true;
     }
 
@@ -124,6 +126,7 @@ public class BoardService {
                 .filePath(BOARD_MAIN_IMAGE_PATH)
                 .fileType("IMAGE")
                 .build();
+        boardFileRepository.save(boardFile);
         return boardFile.getBoardFileId();
     }
 }

@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
 
-</body>
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <input id="boardInfoId" type="hidden" th:value="${boardInfo.boardInfoId}">
+        <div class="container" data-aos="fade-up">
+
+
+            <div id="news-content" class="padded-main">
+                <h1 id="news-title" class="heading-2 font-black-2" th:text="${boardInfo.boardName}"></h1>
+
+                <div id="content-container">
+                    <div id="press-content">
+                        <div id="press-container">
+                            <hr width="100%" class="press-divider border-gray-5" size="1">
+
+                            <div id="pageLoad">
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="press-load-more-container" class="load-more-container">
+                            <button id="press-load-more" class="load-more-button round-button secondary h48">더보기 9/107</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script type="text/javascript">
+
+            const content = $('#pageLoad');
+            pageLoad('ALL');
+
+            function getContentHtml(board){
+                return `<div class="non-notice-item">
+                                    <a href="">
+                                        <div class="title-container">
+                                            <div class="label-date">
+                                                <span class="date-area font-gray bold">${board.createDate}</span></div>
+                                            <h2 class="press-title body-1 font-black-2">
+                                                ${board.title}
+                                            </h2>
+                                        </div>
+                                        <div id="arrow-right" class="pc arrow-right">
+                                            <svg width="25" height="20" viewBox="0 0 25 20" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15 0L13.6 1.4L21.1 9H0V11H21.1L13.6 18.6L15 20L25 10L15 0Z"
+                                                      fill="white"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                                <hr width="100%" size="1" class="border-gray-5 horizontal-divider">`;
+            }
+
+            function pageLoad(category){
+                let url = '/api/board/journalList?boardInfoId=5&category=' + category;
+                content.html('');
+                commAjax.get(url)
+                    .then(data => {
+                        data.forEach(board => {
+                            content.append(getContentHtml(board));
+                        });
+                    })
+            }
+        </script>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/journal.css}" >
+    </th:block>
+
+</div>
+
 </html>

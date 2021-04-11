@@ -16,19 +16,20 @@ spring:
       use-new-id-generator-mappings: false
 
 # local
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: koroot2452
+#    password: koroot2451
+
+  # prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
     username: koroot2452
     password: koroot2451
 
 file:
   image:
-    upload-path: D:\upload\image
-
-# prod
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
-#    username: koroot2452
-#    password: koroot2451
+    #upload-path: D:\upload\image
+    upload-path: /koroot2452/upload/image

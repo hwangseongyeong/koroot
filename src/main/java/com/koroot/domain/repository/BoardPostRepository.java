@@ -16,7 +16,7 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
             + "from BoardPost board "
             + "where board.boardInfoId = :#{#boardSearch.boardInfoId} "
             + "and (:#{#boardSearch.search} is null or board.title like concat('%',:#{#boardSearch.search},'%'))"
-            + "and board.deleted = false "
+            + "and board.deleted = 0 "
             + "order by board.createdAt desc ")
     Page<BoardPost> findAllSearch(Pageable pageable, BoardSearch boardSearch);
 

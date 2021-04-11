@@ -1,20 +1,30 @@
 package com.koroot.web;
 
+import com.koroot.domain.entity.BoardPost;
+import com.koroot.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * 활동
  */
+@RequiredArgsConstructor
 @Controller
 public class ActivityController {
+
+    private final BoardService boardService;
 
     /**
      * 사업 방향
      */
     @GetMapping("/activity/business-direction")
-    public String businessDirection(){
-        return "content/activity/businessDirection";
+    public String businessDirection(Model model){
+        long boardPostId = 3423;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/contents";
     }
     /**
      * 진행중인 주요사업 - 게스트 하우스

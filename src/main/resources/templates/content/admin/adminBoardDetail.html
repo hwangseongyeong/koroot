@@ -66,8 +66,9 @@
                         <textarea id="contents" class="form-control" placeholder="내용" th:text="${boardPost.contents}"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button id="listBtn" type="button" class="btn btn-primary">닫기</button>
-                        <button id="saveBtn" type="button" class="btn btn-primary">저장</button>
+                        <button id="listBtn" type="button" class="btn btn-primary">목록</button>
+                        <button id="saveBtn" type="button" class="btn btn-primary">수정</button>
+                        <button id="deleteBtn" type="button" class="btn btn-primary">삭제</button>
                     </div>
                 </form>
             </div>
@@ -78,7 +79,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
         <script>
-
+            const boardPostId = $("#boardPostId").val();
             let editor;
             ClassicEditor
                 .create( document.querySelector( '#contents' ),{
@@ -115,11 +116,11 @@
                         formData.append('reqData', new Blob([JSON.stringify(requestBoardPost)], {type: "application/json"}));
                         formData.append('mainImage', mainImageFile);
 
-                        commAjax.postMultipart("/api/admin/board", formData)
+                        commAjax.putMultipart("/api/admin/board", formData)
                             .then(function(result){
                                 if(result){
                                     alert("수정되었습니다.");
-                                    location.href = "/admin";
+                                    location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
                                 }
                                 else{
                                     alert("등록에 실패했습니다.");
@@ -130,7 +131,22 @@
 
                 $("#listBtn").on({
                     click:function(){
-                        location.href = '/admin';
+                        location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                    }
+                });
+
+                $("#deleteBtn").on({
+                    click:function(){
+                        commAjax.delete("/api/admin/board?boardPostId=" + boardPostId)
+                            .then(function(result){
+                                if(result){
+                                    alert("삭제되었습니다.");
+                                    location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                                }
+                                else{
+                                    alert("등록에 실패했습니다.");
+                                }
+                            });
                     }
                 });
             })

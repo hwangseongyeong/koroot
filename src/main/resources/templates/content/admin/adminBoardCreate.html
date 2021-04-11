@@ -16,7 +16,7 @@
                             <strong>게시판 선택</strong>
                         </div>
                         <div class="col form-group col-lg-10">
-                            <select id="boardInfo" name="boardInfo" class="form-select">
+                            <select id="boardInfoId" name="boardInfo" class="form-select">
                                 <option value="">선택해주세요.</option>
                                 <option th:each="boardInfo : ${boardInfoList}"
                                         th:value="${boardInfo.boardInfoId}" th:text="${boardInfo.boardName}"></option>
@@ -89,7 +89,7 @@
             $(function() {
                 $("#saveBtn").on({
                     click:function(){
-                        if( $("#boardInfo").val() === '' ){
+                        if( $("#boardInfoId").val() === '' ){
                             alert("게시판 유형을 선택해주세요.");
                             return false;
                         }
@@ -99,7 +99,7 @@
                         let mainImageFile = document.getElementById('mainImage').files[0];
 
                         let requestBoardPost = {
-                            "boardInfoId": $("#boardInfo").val(),
+                            "boardInfoId": $("#boardInfoId").val(),
                             "category": $("#categorySelect").val(),
                             "title": $("#title").val(),
                             "contents": editor.getData()
@@ -112,7 +112,7 @@
                             .then(function(result){
                                 if(result){
                                     alert("등록되었습니다.");
-                                    location.href = "/admin";
+                                    location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
                                 }
                                 else{
                                     alert("등록에 실패했습니다.");
@@ -123,7 +123,7 @@
 
                 $("#listBtn").on({
                     click:function(){
-                        location.href = '/admin';
+                        location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
                     }
                 });
             })

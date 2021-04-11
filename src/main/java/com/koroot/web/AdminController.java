@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Objects;
 
@@ -18,7 +19,11 @@ public class AdminController {
     private final BoardService boardService;
 
     @GetMapping("/admin")
-    public String adminBoardList(Model model){
+    public String adminBoardList(@RequestParam(value = "boardInfoId", required = false) Long boardInfoId, Model model){
+        if(Objects.isNull(boardInfoId)){
+            boardInfoId = 1L;
+        }
+        model.addAttribute("boardInfoId", boardInfoId);
         model.addAttribute("boardInfoList", boardService.getBoardInfoList());
         return "content/admin/adminBoardList";
     }
