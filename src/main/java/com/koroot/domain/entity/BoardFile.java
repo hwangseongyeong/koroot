@@ -17,19 +17,23 @@ public class BoardFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long fileId;
-    private Long boardId;
+    private Long boardFileId;
+    private Long boardPostId;
     private String fileType;
     private String filePath;
     private String fileOriginalName;
     private String fileName;
 
     @Builder
-    public BoardFile(Long boardId, String fileType, String filePath, String fileOriginalName, String fileName) {
-        this.boardId = boardId;
+    public BoardFile(Long boardPostId, String fileType, String filePath, String fileOriginalName, String fileName) {
+        this.boardPostId = boardPostId;
         this.fileType = fileType;
         this.filePath = filePath;
         this.fileOriginalName = fileOriginalName;
         this.fileName = fileName;
+    }
+
+    public String getImageUrl(){
+        return "/image/download/" + filePath + "/" + fileName;
     }
 }

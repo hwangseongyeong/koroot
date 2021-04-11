@@ -1,87 +1,155 @@
-$.ajaxSetup({
-	beforeSend: function(xhr) {
-		console.log("beforeSend==========>");
-		// common.blockUI();
-	},
-	complete : function(xhr,status) {
-		console.log("complete==========>", status);
-		// common.unblockUI();
-	},
-	error : function(xhr,status,error){
-		console.log("error==========>");
-		// common.unblockUI();
+function replacer(key, value) {
+	if (value === null) {
+		return undefined;
 	}
-});
-
-var commAjax = {
-	get: function(url, param){
-		return new Promise(function(resolve, reject) {
-			console.log("!FormData", param, JSON.stringify(param));
-			var ajaxObject = {
-			    async : false,
-				type: "GET",
-				url: url,
-				cache: false,
-				data: param,
-				success: function(res) {
-					console.log('res =>', res);
-					resolve(res);
-				},
-				error: function(err) {
-					console.log(err);
-					if( err.status == "401" ){
-						alert(err.responseText);
-						window.location.href="/login.do?lang=in";
-					}else{
-						reject(err);
-					}
-				}
-			};
-
-			$.ajax(ajaxObject);
-		})
-	},
-	post: function(url, param){
-		return new Promise(function(resolve, reject) {
-
-			var ajaxObject = {
-				async : false,
-				type: "POST",
-				url: url,
-				cache: false,
-				success: function(res) {
-					console.log('res =>', res);
-					resolve(res);
-				},
-				error: function(err) {
-					console.log("err==========>", err.status === 500 );
-					console.log(err);
-					if( err.status == "401" ){
-						alert(err.responseText);
-						window.location.href="/login.do?lang=in";
-					}else if( err.status == "500" ){
-						alert(err.statusText);
-					}else{
-						reject(err);
-					}
-				},
-			};
-
-			// when formData
-			if (param instanceof FormData) {
-				console.log("FormData");
-				ajaxObject['processData'] = false;
-				ajaxObject['contentType'] = false;
-				ajaxObject['data'] = param;
-			}
-			// when json
-			else {
-				console.log("!FormData", param, JSON.stringify(param));
-				ajaxObject['contentType'] = "application/json; charset=utf-8";
-				ajaxObject['data'] = JSON.stringify(param);
-			}
-
-			$.ajax(ajaxObject);
-		});
-	},
+	return value;
 }
+
+function fetchPromise(request) {
+	let status;
+	return fetch(request)
+		.then(response => {
+			status = response.ok;
+			return response.json();
+		})
+		.then(json => {
+			if (status) {
+				return json;
+			} else {
+				switch (typeof json) {
+					case 'object':
+						if (json.code === '1000') {
+							throw new Error(json.errorDataList
+								.map(errorData => errorData.message)
+								.join('\n')
+							);
+						}
+						break;
+					case 'string':
+						throw new Error(json);
+
+					default:
+						break;
+				}
+			}
+		});
+}
+
+const commAjax =  {
+	html: function (url, params) {
+		let request,
+			query;
+		const esc = encodeURIComponent;
+
+		if (params) {
+			query = Object.keys(params)
+				.map(k => `${esc(k)}=${esc(params[k])}`)
+				.join('&');
+
+			url += '?' + query;
+		}
+
+		request = new Request(url, {
+			method: 'get',
+			credentials: 'same-origin',
+			headers: new Headers({
+				'Content-Type': 'application/html',
+				'X-Requested-With': 'XMLHttpRequest'
+			})
+		});
+
+		return fetchPromise(request);
+	},
+
+	get: function (url, params) {
+		let request,
+			query;
+		const esc = encodeURIComponent;
+
+		if (params) {
+			query = Object.keys(params)
+				.map(k => `${esc(k)}=${esc(params[k])}`)
+				.join('&');
+
+			url += '?' + query;
+		}
+
+		request = new Request(url, {
+			method: 'get',
+			credentials: 'same-origin',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest'
+			})
+		});
+
+		return fetchPromise(request);
+	},
+
+	post: function (url, params) {
+		const request = new Request(url, {
+			method: 'post',
+			credentials: 'same-origin',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest'
+			}),
+			body: JSON.stringify(params, replacer)
+		});
+
+		return fetchPromise(request);
+	},
+
+	put: function (url, params) {
+		const request = new Request(url, {
+			method: 'put',
+			credentials: 'same-origin',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest'
+			}),
+			body: JSON.stringify(params, replacer)
+		});
+
+		return fetchPromise(request);
+	},
+
+	delete: function (url, params) {
+		const request = new Request(url, {
+			method: 'delete',
+			credentials: 'same-origin',
+			headers: new Headers({
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest'
+			}),
+			body: JSON.stringify(params, replacer)
+		});
+
+		return fetchPromise(request);
+	},
+
+	postMultipart: function (url, params) {
+		const request = new Request(url, {
+			method: 'post',
+			headers: new Headers({
+				'X-Requested-With': 'XMLHttpRequest'
+			}),
+			credentials: 'same-origin',
+			body: params
+		});
+
+		return fetchPromise(request);
+	},
+
+	putMultipart: function (url, params) {
+		const request = new Request(url, {
+			method: 'put',
+			headers: new Headers({
+				'X-Requested-With': 'XMLHttpRequest'
+			}),
+			credentials: 'same-origin',
+			body: params
+		});
+		return fetchPromise(request);
+	}
+};

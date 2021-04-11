@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <input id="boardInfoId" type="hidden" th:value="${boardInfo.boardInfoId}">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3><span th:text="${boardInfo.boardName}"></span></h3>
+                </div>
+            </div>
+
+            <div id="journal-feed" class="padded-main">
+
+                <div id="journal-taxonomy-container">
+
+                    <div id="journal-category-container" class="journal-taxonomy-container">
+                        <div class="taxonomy-item-container">
+                            <button id="journal-category-all" class="journal-category-button round-button category active">전체보기</button>
+                            <button class="journal-category-button round-button category">
+                                게스트하우스
+                            </button>
+                            <button class="journal-category-button round-button category">
+                                모국생활지원
+                            </button>
+                            <button class="journal-category-button round-button category">
+                                권익옹호사업
+                            </button>
+                            <button class="journal-category-button round-button category">
+                                연구사업
+                            </button>
+                            <button class="journal-category-button round-button category">
+                                국제협력
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <hr class="border-gray-6 mobile">
+
+                </div>
+                <hr class="border-gray-6">
+                <div id="journal-feed-content">
+
+                </div>
+
+            </div>
+            </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script src="/js/board.js"></script>
+        <script type="text/javascript">
+
+            const content = $('#journal-feed-content');
+            pageLoad('ALL');
+
+            function getContentHtml(board){
+                return `<a class="feed-item" href="/board/${board.boardPostId}/detail">
+                            <div class="thumbnail-container">
+                                <div class="thumbnail" style="background-image: url(${board.mainImageUrl});"></div>
+                                <div class="journal-tags">
+                                    <!--<span class="journal-category round-button border-none bold">다양성</span>-->
+                                </div>
+                            </div>
+                            <div class="info-container">
+                                <h2 class="journal-title body-2 font-black-2">${board.title}</h2>
+                            </div>
+                        </a>`;
+            }
+
+            function pageLoad(category){
+                let url = '/api/board/journalList?boardInfoId=3&category=' + category;
+                content.html('');
+                commAjax.get(url)
+                    .then(data => {
+                        data.forEach(board => {
+                            content.append(getContentHtml(board));
+                        });
+                    })
+            }
+
+
+
+        </script>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/journal.css}" >
+    </th:block>
+
+    <style type="text/css">
+        :root {
+            --root-impact-green: #00a75d;
+            --root-impact-gray: #898989;
+
+            --lighter-green: #EFF8F5;
+            --darker-green: #008A4D;
+
+            --gradient-1-start: var(--root-impact-green);
+            --gradient-1-end: #00A72F;
+
+            --green-1: #539D84;
+            --green-2: #75A48F;
+            --green-3: #A9D7C7;
+            --green-4: #E4ECE7;
+            --green-5: #E6F6EF;
+            --green-6: #ECF9F4;
+            --green-7: #F2FAF8;
+
+            --blue-1: #2979FF;
+            --blue-2: #2264D1;
+
+            --white: #fff;
+
+            --black-1: #000;
+            --black-2: #282828;
+
+            --gray-1: #333;
+        ;
+            --gray-2: #4F4F4F;
+            --gray-3: #828282;
+            --gray-4: #BDBDBD;
+            --gray-5: #DDD;
+            --gray-6: #F0F0F0;
+
+
+            --journal-category-bg: #E4ECE7;
+            --journal-category-font: #75A48F;
+            --journal-genre-bg: #D6E2F2;
+            --journal-genre-font: #84A5D0;
+        }
+    </style>
+
+</div>
+
+</html>

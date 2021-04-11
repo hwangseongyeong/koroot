@@ -19,8 +19,8 @@
                    data-pagination="true"
                    data-search="true"
                    data-show-columns="true"
-                   data-halign="center"
-                   data-url="/admin/api/boardListAll"
+                   data-side-pagination="server"
+                   data-page-list="[10, 25, 50, 100, all]"
             >
             </table>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -86,7 +86,6 @@
         </div>
         </form>
     <th:block layout:fragment="script">
-<!--        <script th:src="@{/js/communication/notice.js}"></script>-->
         <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 
         <script type="text/javascript">
@@ -104,35 +103,38 @@
                 } );
 
             $(function(){
-                $('#table').bootstrapTable('destroy').bootstrapTable({
-                    height: 578,
+                const $table = $('#table');
+                $table.bootstrapTable('destroy').bootstrapTable({
+                    url: '/api/board/list?boardInfoId=1',
                     locale: "ko-KR",
                     columns: [
                         {
-                            title: '게시글ID',
-                            field: 'boardId',
-                            width: 40,
-                            align: 'center'
-                        },{
-                            title: '게시판 유형',
-                            field: 'type',
-                            align: 'center'
-                        },{
-                            title: '게시판 카테고리',
-                            field: 'category',
-                            align: 'center'
-                        },{
+                            title: '번호',
+                            field: 'boardPostId',
+                            align: 'center',
+                            width: 50
+                        }, {
                             title: '제목',
                             field: 'title',
-                            align: 'center'
-                        },{
+                            align: 'left',
+                            halign: 'center',
+                            width: 500
+                        }, {
+                            title: '작성자',
+                            field: 'createdBy',
+                            align: 'center',
+                            width: 50
+                        }, {
                             title: '등록일',
                             field: 'createdAt',
-                            align: 'center'
-                        },{
+                            align: 'center',
+                            formatter: dateFormatter,
+                            width: 50
+                        }, {
                             title: '조회수',
-                            field: 'hits',
-                            align: 'center'
+                            field: 'hit',
+                            align: 'center',
+                            width: 50
                         }
                     ]
                 });

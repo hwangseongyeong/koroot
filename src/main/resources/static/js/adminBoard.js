@@ -1,9 +1,9 @@
-const boardInfoId = $('#boardInfoId').val();
+const $adminTable = $('#adminTable');
 
-function initTable() {
-    const $table = $('#table');
-    $table.bootstrapTable('destroy').bootstrapTable({
-        url: '/api/board/list?boardInfoId=' + boardInfoId,
+function initAdminTable(boardInfoId) {
+    let url = '/api/board/list?boardInfoId=' + boardInfoId
+    $adminTable.bootstrapTable('destroy').bootstrapTable({
+        url: url,
         locale: "ko-KR",
         columns: [
             {
@@ -16,7 +16,7 @@ function initTable() {
                 field: 'title',
                 align: 'left',
                 halign: 'center',
-                width: 500
+                width: 300
             }, {
                 title: '작성자',
                 field: 'createdBy',
@@ -37,7 +37,17 @@ function initTable() {
         ]
     });
 
-    $table.on('click-row.bs.table', function (e, rowData) {
-        location.href="/board/" + rowData.boardPostId + "/detail";
+    $adminTable.on('click-row.bs.table', function (e, rowData) {
+        location.href="/admin/board/" + rowData.boardPostId + "/detail";
     });
 }
+
+$(function() {
+    initAdminTable('0');
+
+    $("#boardSelect").on({
+        change:function(){
+            initAdminTable(this.value);
+        }
+    });
+})

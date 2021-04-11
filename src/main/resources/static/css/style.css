@@ -1015,7 +1015,6 @@ section {
 }
 
 .testimonials .testimonial-item p {
-  font-style: italic;
   margin: 0 auto 15px auto;
   color: #eee;
 }
@@ -1283,7 +1282,6 @@ section {
 }
 
 .team .member .member-info p {
-  font-style: italic;
   font-size: 14px;
   line-height: 26px;
   color: #777777;
