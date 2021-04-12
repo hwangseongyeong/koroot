@@ -71,7 +71,7 @@
                         <div id="board">
                             <h4 class="title"><a href="">공지사항</a></h4>
                             <div th:each="board : ${boardList}">
-                                <a th:href="@{/board/{boardInfoId}/detail(boardInfoId=${board.boardInfoId})}" style="color: black;">
+                                <a th:href="@{/board/{boardPostId}/detail(boardPostId=${board.boardPostId})}" style="color: black;">
                                     <p th:text="${board.title}"></p>
                                 </a>
                             </div>

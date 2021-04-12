@@ -6,41 +6,14 @@
     <div layout:fragment="content" style="margin : 2.0em">
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
-<!--                <div th:utext="${boardPost.contents}">-->
-<!--                </div>-->
-                <textarea id="contents"></textarea>
+                <div class="ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" th:utext="${boardPost.contents}">
+                </div>
             </div>
         </section>
 
-        <th:block layout:fragment="script">
-            <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
-            <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
-            <script>
-                let editor;
-
-                ClassicEditor
-                .create( document.querySelector( '#contents' ))
-                .then( newEditor => {
-                    $(".ck.ck-toolbar__items").hide();
-                    editor = newEditor;
-
-                    commAjax.get("/intro/test")
-                        .then( res => {
-                            editor.setData( res.contents );
-                            editor.isReadOnly = true;
-                        });
-                })
-                .catch( error => {
-                    console.error( error );
-                } );
-
-
-            </script>
+        <th:block layout:fragment="css">
+            <link rel="stylesheet" th:href="@{/css/ckeditor.css}" >
         </th:block>
-
-        <style type="text/css">
-        </style>
-
 
     </div>
 </html>

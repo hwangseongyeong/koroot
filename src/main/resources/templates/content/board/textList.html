@@ -65,7 +65,7 @@
             }
 
             function pageLoad(category){
-                let url = '/api/board/journalList?boardInfoId=5&category=' + category;
+                let url = '/api/board/journalList?boardInfoId=' + $('#boardInfoId').val() +'&category=' + category;
                 content.html('');
                 commAjax.get(url)
                     .then(data => {

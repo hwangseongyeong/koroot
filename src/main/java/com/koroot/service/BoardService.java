@@ -62,7 +62,7 @@ public class BoardService {
 
     public List<BoardPostDto> getBoardPostJournalList(long boardInfoId){
 
-        return boardPostRepository.findAllByBoardInfoId(boardInfoId).stream()
+        return boardPostRepository.findAllByBoardInfoIdAndDeletedOrderByCreatedAtDesc(boardInfoId, false).stream()
                 .map(it -> {
                     BoardPostDto dto = BoardPostDto.of(it);
                     if(Objects.nonNull(it.getMainImageId())){
