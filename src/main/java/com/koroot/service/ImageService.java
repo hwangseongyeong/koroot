@@ -17,7 +17,7 @@ public class ImageService {
 
         String filename = String.valueOf(System.currentTimeMillis());
 
-        String fileUrl = IMAGE_DIR_PATH + File.separator + path + File.separator +  filename;
+        String fileUrl = IMAGE_DIR_PATH + "/" + path + "/" +  filename;
 
         File uploadFile = new File(fileUrl);
         file.transferTo(uploadFile);

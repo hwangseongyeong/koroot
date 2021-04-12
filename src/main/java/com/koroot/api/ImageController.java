@@ -32,7 +32,7 @@ public class ImageController {
     public ImageResponseDto imageUpload(@RequestPart(value = "upload") MultipartFile file) throws Exception{
 
         BoardFileDto dto = imageService.imageUpload(file, BOARD_IMAGE_PATH);
-        String url = "/image/download/" + dto.getFilePath() + File.separator + dto.getFileName();
+        String url = "/image/download/" + dto.getFilePath() + "/" + dto.getFileName();
         return new ImageResponseDto(url, true);
     }
 
