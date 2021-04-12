@@ -1,10 +1,7 @@
 package com.koroot.domain.entity;
 
 import com.koroot.model.BoardPostRequestDto;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -33,6 +30,10 @@ public class BoardPost {
     private LocalDateTime createdAt;
     private String modifiedBy;
     private LocalDateTime modifiedAt;
+    @Setter
+    @Transient
+    private long boardNo;
+
 
     public void updateHit() {
         this.hit++;

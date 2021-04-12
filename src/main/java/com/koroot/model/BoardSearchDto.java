@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 public class BoardSearchDto {
@@ -21,10 +23,17 @@ public class BoardSearchDto {
     }
 
     public static BoardSearchDto of(Page<BoardPost> page) {
+        long total =  page.getTotalElements();
+        long offset = page.getPageable().getOffset();
+        List<BoardPost> boardPostList = page.getContent();
+        for(BoardPost boardPost : boardPostList) {
+            boardPost.setBoardNo(total - offset);
+            offset++;
+        }
         return BoardSearchDto.builder()
-                .total(page.getTotalElements())
-                .totalNotFiltered(page.getTotalElements())
-                .rows(page.getContent())
+                .total(total)
+                .totalNotFiltered(total)
+                .rows(boardPostList)
                 .build();
     }
 }

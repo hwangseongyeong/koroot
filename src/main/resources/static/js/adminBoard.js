@@ -9,7 +9,7 @@ function initAdminTable(id) {
         columns: [
             {
                 title: '번호',
-                field: 'boardPostId',
+                field: 'boardNo',
                 align: 'center',
                 width: 50
             }, {
