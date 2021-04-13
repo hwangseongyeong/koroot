@@ -1,20 +1,30 @@
 package com.koroot.web;
 
+import com.koroot.domain.entity.BoardPost;
+import com.koroot.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * 후원참여
  */
+@RequiredArgsConstructor
 @Controller
 public class SupportController {
+
+    private final BoardService boardService;
 
     /**
      * 후원 안내
      */
     @GetMapping("/support/guide")
-    public String guide(){
-        return "content/support/guide";
+    public String guide(Model model){
+        long boardPostId = 3507;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/contents";
     }
 
     /**

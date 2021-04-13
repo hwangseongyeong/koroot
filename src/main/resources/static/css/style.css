@@ -568,7 +568,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f6f9fe;
+  background-color: white;
 }
 
 .section-title {
@@ -1783,7 +1783,7 @@ section {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 30em;
+  width: 25em;
 }
 
 .board-detail{ max-width: 920px;margin:0 auto; }

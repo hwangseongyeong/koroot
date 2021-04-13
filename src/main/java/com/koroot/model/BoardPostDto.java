@@ -20,6 +20,7 @@ public class BoardPostDto {
     @Setter
     private String mainImageUrl;
     private String createDate;
+    private String createYear;
 
     @Builder
     public BoardPostDto(long boardPostId, long boardInfoId, String title, String category,
@@ -31,6 +32,7 @@ public class BoardPostDto {
         this.contents = contents;
         this.mainImageUrl = mainImageUrl;
         this.createDate = createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.createYear = createDate.format(DateTimeFormatter.ofPattern("yyyy"));
     }
 
     public static BoardPostDto of(BoardPost boardPost) {

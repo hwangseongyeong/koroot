@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 단체소개
@@ -27,14 +25,6 @@ public class IntroController {
         BoardPost boardPost = boardService.getBoardPost(boardPostId);
         model.addAttribute("boardPost", boardPost);
         return "content/board/contents";
-    }
-
-    @GetMapping("/intro/test")
-    public @ResponseBody BoardPost get(Model model){
-        long boardPostId = 3420;
-        BoardPost boardPost = boardService.getBoardPost(boardPostId);
-        model.addAttribute("boardPost", boardPost);
-        return boardPost;
     }
 
     /**

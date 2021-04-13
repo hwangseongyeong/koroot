@@ -25,7 +25,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="row">
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div id="boardList3" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                             <div class="icon"><i class="bx bxl-dribbble"></i></div>
                             <h4 class="title"><a href="">뿌리의집 게스트하우스</a></h4>
@@ -33,30 +33,28 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div id="boardList4" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon"><i class="bx bx-file"></i></div>
-                            <h4 class="title"><a href="">권익옹호활동</a></h4>
+                            <h4 class="title"><a href="">권리옹호활동</a></h4>
                             <p class="description">해외입양 인식개선 및 제도개선을 위해 입양인, 친생가족, 미혼모단체, 공익법단체 등과 연대합니다</p>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div id="boardList8" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                             <div class="icon"><i class="bx bx-tachometer"></i></div>
                             <h4 class="title"><a href="">출판사 뿌리의집</a></h4>
                             <p class="description">한국사회에 입양에 대한 다양한 관점을 소개하고 입양담론을 다양화하기위한 서적을 출판합니다</p>
                         </div>
                     </div>
-
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div id="boardList5" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                             <div class="icon"><i class="bx bx-world"></i></div>
                             <h4 class="title"><a href="">김도현 목사의 해외입양이야기</a></h4>
                             <p class="description">해외입양인들의 '이별과 상실'의 아픔을 헤아리고, 해외입양의 숨겨진 담론을 이야기합니다</p>
                         </div>
                     </div>
-
                 </div>
 
             </div>
@@ -69,7 +67,9 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
                         <div id="board">
-                            <h4 class="title"><a href="">공지사항</a></h4>
+                            <div style="font-size: large">
+                                <strong>공지사항</strong><strong style="float: right"><a href="/board/1/list">+</a></strong>
+                            </div>
                             <div th:each="board : ${boardList}">
                                 <a th:href="@{/board/{boardPostId}/detail(boardPostId=${board.boardPostId})}" style="color: black;">
                                     <p th:text="${board.title}"></p>
@@ -83,11 +83,11 @@
                     </div>
 
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="row" style="padding: 30px">
+                        <div class="row" style="padding: 25px">
                             <a href="/support/guide"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">후원신청</button></a>
                             <a href="/support/volunteer"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">자원활동<br/>신청</button></a>
                         </div>
-                        <div class="row" style="padding: 30px">
+                        <div class="row" style="padding: 25px">
                             <a href="/board/7/list"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">연차보고서</button></a>
                             <a href="/board/6/list"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">재정회계<br/>보고</button></a>
                         </div>
@@ -338,6 +338,36 @@
         </section><!-- End Clients Section -->
 
     </main><!-- End #main -->
+
+    <th:block layout:fragment="script">
+        <script type="text/javascript">
+
+            $("#boardList5").on({
+                click:function(){
+                    location.href = "/board/5/list";
+                }
+            });
+
+            $("#boardList8").on({
+                click:function(){
+                    location.href = "/board/8/list";
+                }
+            });
+
+            $("#boardList3").on({
+                click:function(){
+                    location.href = "/board/3/list";
+                }
+            });
+
+            $("#boardList4").on({
+                click:function(){
+                    location.href = "/board/3/list";
+                }
+            });
+
+        </script>
+    </th:block>
 
 </div>
 
