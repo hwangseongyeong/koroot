@@ -11,6 +11,7 @@ public enum BoardType {
     IMAGE("imageList", "generalDetail", "이미지게시판"),
     TEXT("textList", "generalDetail", "텍스트게시판"),
     JOURNAL("journalList", "generalDetail", "저널게시판"),
+    CATEGORY("categoryList", "generalDetail", "카테고리게시판"),
     NOTICE("noticeList", "generalDetail", "공지게시판"),
     ;
 

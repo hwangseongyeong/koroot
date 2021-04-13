@@ -1,6 +1,7 @@
 package com.koroot.domain.entity;
 
 import com.koroot.model.BoardPostRequestDto;
+import com.koroot.type.CategoryType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ public class BoardPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardPostId;
     private Long boardInfoId;
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private CategoryType category;
     private String title;
     private String contents;
     private Integer hit;
@@ -66,7 +68,7 @@ public class BoardPost {
     }
 
     @Builder
-    public BoardPost(Long boardInfoId, String category, String title, String contents,
+    public BoardPost(Long boardInfoId, CategoryType category, String title, String contents,
                      String createdBy, String modifiedBy, LocalDateTime createdAt){
         this.boardInfoId = boardInfoId;
         this.category = category;

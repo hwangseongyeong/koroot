@@ -8,16 +8,14 @@
 
     <section id="contact" class="contact">
         <input id="boardInfoId" type="hidden" th:value="${boardInfo.boardInfoId}">
+        <input id="category" type="hidden" th:value="${category}">
         <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3><span th:text="${boardInfo.boardName}"></span></h3>
-                </div>
+            <div class="col-lg-12">
+                <h3><span th:text="${boardInfo.boardName}"></span></h3>
+                <h6 th:if="${boardInfo.boardInfoId == 7}">매년 뿌리의집의 사업과 재정운영을 담은 연차보고서를 발간합니다.</h6>
             </div>
-
             <div id="journal-feed" class="padded-main">
-                    <div id="journal-feed-content"></div>
-                </div>
+                <div id="journal-feed-content"></div>
             </div>
     </section>
 
@@ -43,9 +41,9 @@
             }
 
             function pageLoad(category){
-                let url = '/api/board/journalList?boardInfoId=' + $('#boardInfoId').val() +'&category=' + category;
-                content.html('');
-                commAjax.get(url)
+                let param = {'boardInfoId' : $('#boardInfoId').val()}
+                let url = '/api/board/journalList';
+                commAjax.get(url, param)
                     .then(data => {
                         data.forEach(board => {
                             content.append(getContentHtml(board));

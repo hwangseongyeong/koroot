@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
 public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
     @Query(value =
               "select "
@@ -19,8 +17,4 @@ public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
             + "and board.deleted = false "
             + "order by board.createdAt desc ")
     Page<BoardPost> findAllSearch(Pageable pageable, BoardSearch boardSearch);
-
-    List<BoardPost> findAllByBoardInfoIdAndDeletedOrderByCreatedAtDesc(long boardInfoId, boolean deleted);
-
-    List<BoardPost> findAllByBoardInfoIdAndCategory(long boardInfoId, String category);
 }

@@ -42,6 +42,7 @@ public class BoardPostDto {
                 .title(boardPost.getTitle())
                 .contents(boardPost.getContents())
                 .createDate(boardPost.getCreatedAt())
+                .category(boardPost.getCategory().name())
                 .build();
     }
 }

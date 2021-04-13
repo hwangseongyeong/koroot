@@ -29,6 +29,6 @@ public class BoardApiController {
     @GetMapping("/journalList")
     public List<BoardPostDto> getJournalList(BoardSearch boardSearch) {
 
-        return boardService.getBoardPostJournalList(boardSearch.getBoardInfoId());
+        return boardService.getBoardPostJournalList(boardSearch);
     }
 }

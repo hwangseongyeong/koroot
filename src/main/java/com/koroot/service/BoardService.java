@@ -60,9 +60,9 @@ public class BoardService {
         return boardPostRepository.findAllSearch(pageable, search);
     }
 
-    public List<BoardPostDto> getBoardPostJournalList(long boardInfoId){
-
-        return boardPostRepository.findAllByBoardInfoIdAndDeletedOrderByCreatedAtDesc(boardInfoId, false).stream()
+    public List<BoardPostDto> getBoardPostJournalList(BoardSearch search){
+        Pageable pageable = PageRequest.of(0, 100);
+        return boardPostRepository.findAllSearch(pageable, search).getContent().stream()
                 .map(it -> {
                     BoardPostDto dto = BoardPostDto.of(it);
                     if(Objects.nonNull(it.getMainImageId())){
