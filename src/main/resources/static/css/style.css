@@ -1778,12 +1778,12 @@ section {
   }
 }
 
-#board p {
+#board {
   display:block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 25em;
+  width: 95%;
 }
 
 .board-detail{ max-width: 920px;margin:0 auto; }
