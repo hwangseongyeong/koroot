@@ -50,6 +50,16 @@
                     </div>
                     <div class="row">
                         <div class="col form-group col-lg-2">
+                            <strong>첨부파일</strong>
+                        </div>
+                        <div class="col form-group col-lg-10">
+                            <fieldset>
+                                <input id="file-upload" name="file[]" type="file" multiple="multiple" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group col-lg-2">
                             <strong>제목</strong>
                         </div>
                         <div class="col form-group col-lg-10">
@@ -90,7 +100,7 @@
                 $("#saveBtn").on({
                     click:function(){
                         if( $("#boardInfoId").val() === '' ){
-                            alert("게시판 유형을 선택해주세요.");
+                            Swal.fire("", "게시판 유형을 선택해주세요.", "info");
                             return false;
                         }
 
@@ -111,11 +121,11 @@
                         commAjax.postMultipart("/api/admin/board", formData)
                             .then(function(result){
                                 if(result){
-                                    alert("등록되었습니다.");
+                                    Swal.fire("", "등록되었습니다.", "success");
                                     location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
                                 }
                                 else{
-                                    alert("등록에 실패했습니다.");
+                                    Swal.fire("", "등록에 실패했습니다.", "error");
                                 }
                             });
                     }

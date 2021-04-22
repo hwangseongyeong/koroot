@@ -1,5 +1,6 @@
 package com.koroot.domain.entity;
 
+import com.koroot.service.ConfigService;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +35,6 @@ public class BoardFile {
     }
 
     public String getImageUrl(){
-        return "/image/download/" + filePath + "/" + fileName;
+        return ConfigService.IMAGE_DOWNLOAD_PATH + "/" + filePath + "/" + fileName;
     }
 }

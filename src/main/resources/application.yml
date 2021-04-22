@@ -17,9 +17,24 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
+    #url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
     username: koroot2452
     password: koroot2451
+
+  mail:
+    to-address: ghkdtjddud@gmail.com
+    host: smtp.naver.com
+    port: 465
+    username: ghkdtjddud2@gmail.com
+    password: ghkd9001A!@
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 file:
   image:
@@ -36,6 +51,9 @@ spring:
     url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
     username: koroot2452
     password: koroot2451
+
+  mail:
+    to-address: ghkdtjddud@gmail.com
 
 file:
   image:

@@ -68,7 +68,7 @@ public class BoardService {
                     if(Objects.nonNull(it.getMainImageId())){
                         BoardFile file = boardFileRepository.findById(it.getMainImageId()).orElse(null);
                         if(Objects.nonNull(file)) {
-                            String url = "/image/download/main/" + file.getFileName();
+                            String url = ConfigService.IMAGE_DOWNLOAD_PATH + "/main/" + file.getFileName();
                             dto.setMainImageUrl(url);
                         }
                     }
