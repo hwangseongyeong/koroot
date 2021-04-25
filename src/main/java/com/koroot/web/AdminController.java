@@ -18,7 +18,19 @@ public class AdminController {
 
     private final BoardService boardService;
 
+    @GetMapping("/login")
+    public String login(Model model){
+
+        return "content/login/login";
+    }
+
     @GetMapping("/admin")
+    public String admin(Model model){
+
+        return "redirect:/admin/board";
+    }
+
+    @GetMapping("/admin/board")
     public String adminBoardList(@RequestParam(value = "boardInfoId", required = false) Long boardInfoId, Model model){
         if(Objects.isNull(boardInfoId)){
             boardInfoId = 1L;

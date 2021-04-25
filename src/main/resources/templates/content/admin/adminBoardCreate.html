@@ -122,7 +122,7 @@
                             .then(function(result){
                                 if(result){
                                     Swal.fire("", "등록되었습니다.", "success");
-                                    location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                                    location.href = "/admin/board?boardInfoId=" + $("#boardInfoId").val();
                                 }
                                 else{
                                     Swal.fire("", "등록에 실패했습니다.", "error");
@@ -133,7 +133,7 @@
 
                 $("#listBtn").on({
                     click:function(){
-                        location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                        location.href = "/admin/board?boardInfoId=" + $("#boardInfoId").val();
                     }
                 });
             })

@@ -16,7 +16,7 @@ public class MailService {
     public void mailSend(MailDto mailDto) throws Exception {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(configService.TO_ADDRESS);
-        message.setFrom(configService.TO_ADDRESS);
+        message.setFrom(mailDto.getEmail());
         message.setSubject("[문의사항] " + mailDto.getSubject());
 
         StringBuffer buffer = new StringBuffer();

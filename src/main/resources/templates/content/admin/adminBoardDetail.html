@@ -120,7 +120,7 @@
                             .then(function(result){
                                 if(result){
                                     Swal.fire("", "수정되었습니다.", "success");
-                                    location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                                    location.href = "/admin/board?boardInfoId=" + $("#boardInfoId").val();
                                 }
                                 else{
                                     Swal.fire("", "수정에 실패했습니다.", "error");
@@ -131,7 +131,7 @@
 
                 $("#listBtn").on({
                     click:function(){
-                        location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
+                        location.href = "/admin/board?boardInfoId=" + $("#boardInfoId").val();
                     }
                 });
 

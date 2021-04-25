@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/empty">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form onsubmit="return login();" class="box">
+                            <h1>Login</h1>
+                            <p class="text-muted"> Please enter your login and password!</p>
+                            <input type="text" id="userName" placeholder="Username">
+                            <input type="password" id="password" placeholder="Password">
+                            <input type="submit" id="loginSummit" value="Login" href="#">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script>
+
+            const $userName = $('#userName');
+            const $password = $('#password');
+            const $l = $( '#loginSummit' ).ladda();
+
+            function login(){
+                let param = {
+                    'userName': $userName.val(),
+                    'password': $password.val()
+                };
+
+                $l.ladda( 'start' );
+                commAjax.post("/api/login", param)
+                    .then(function(result){
+                        if (result) {
+                            $l.ladda('stop');
+                            location.href = "/admin/board";
+                        } else {
+                            Swal.fire('', '아이디나 패스워드가 틀렸습니다.', 'error');
+                            $l.ladda('stop');
+                        }
+                    });
+
+                return false;
+            }
+        </script>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/login.css}" >
+    </th:block>
+
+</div>
+
+
+</html>

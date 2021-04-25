@@ -41,7 +41,7 @@ public class ActivityController {
         return "content/activity/lifeSupport";
     }
     /**
-     * 진행중인 주요사업 - 권익옹호사업
+     * 진행중인 주요사업 - 권리옹호사업
      */
     @GetMapping("/activity/advocacy")
     public String advocacy(){

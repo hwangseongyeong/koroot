@@ -23,9 +23,9 @@ spring:
     password: koroot2451
 
   mail:
-    to-address: ghkdtjddud@gmail.com
-    host: smtp.naver.com
-    port: 465
+    to-address: ghkdtjddud2@gmail.com
+    host: smtp.gmail.com
+    port: 587
     username: ghkdtjddud2@gmail.com
     password: ghkd9001A!@
     properties:
@@ -52,8 +52,19 @@ spring:
     username: koroot2452
     password: koroot2451
 
+
   mail:
-    to-address: ghkdtjddud@gmail.com
+    to-address: admin@koroot.org
+    host: smtp.gmail.com
+    port: 587
+    username: admin@koroot.org
+    password: jkark@$%!
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 file:
   image:
