@@ -21,11 +21,24 @@ public class MainController {
         return "redirect:/main";
     }
 
+    @GetMapping("/eng")
+    public String engIndex(){
+        return "redirect:/eng/main";
+    }
+
     @GetMapping("/main")
     public String main(Model model){
         BoardSearch search = new BoardSearch(1, 0, 7, "");
         List<BoardPost> boardList = boardService.getBoardPostList(search).getContent();
         model.addAttribute("boardList", boardList);
         return "content/main/main";
+    }
+
+    @GetMapping("/eng/main")
+    public String engMain(Model model){
+        BoardSearch search = new BoardSearch(15, 0, 7, "");
+        List<BoardPost> boardList = boardService.getBoardPostList(search).getContent();
+        model.addAttribute("boardList", boardList);
+        return "content/main/engMain";
     }
 }

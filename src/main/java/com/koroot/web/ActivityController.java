@@ -26,6 +26,13 @@ public class ActivityController {
         model.addAttribute("boardPost", boardPost);
         return "content/board/contents";
     }
+    @GetMapping("/eng/activity/business-direction")
+    public String engBusinessDirection(Model model){
+        long boardPostId = 3540;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engContents";
+    }
     /**
      * 진행중인 주요사업 - 게스트 하우스
      */

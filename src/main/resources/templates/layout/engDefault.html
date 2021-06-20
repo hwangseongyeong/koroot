@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head th:replace="fragments/config :: configFragment"></head>
+
+<header th:replace="fragments/topBar :: topBarFragment"></header>
+
+<header th:replace="fragments/engHeader :: engHeaderFragment"></header>
+
+<div layout:fragment="content"></div>
+
+<footer th:replace="fragments/engFooter :: engFooterFragment"></footer>
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Template Main JS File -->
+<script src="/js/main/main.js"></script>
+
+</html>

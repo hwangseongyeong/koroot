@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/engDefault">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <input id="boardInfoId" type="hidden" th:value="${boardInfo.boardInfoId}">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3><span th:text="${boardInfo.boardName}"></span></h3>
+                </div>
+            </div>
+            <table id="table"
+                   data-toggle="table"
+                   data-pagination="true"
+                   data-search="true"
+                   data-show-columns="true"
+                   data-side-pagination="server"
+                   data-page-list="[10, 25, 50, 100, all]"
+            >
+            </table>
+        </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script src="/js/board.js"></script>
+        <script>
+            $(function() {
+                initTable();
+            })
+        </script>
+    </th:block>
+
+</div>
+
+</html>

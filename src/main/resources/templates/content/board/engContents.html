@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/engDefault">
+
+<div layout:fragment="content" style="margin : 2.0em">
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <div class="ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" th:utext="${boardPost.contents}">
+            </div>
+        </div>
+    </section>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/ckeditor.css}" >
+    </th:block>
+
+</div>
+</html>

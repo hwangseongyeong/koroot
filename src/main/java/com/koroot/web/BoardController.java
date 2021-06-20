@@ -37,6 +37,19 @@ public class BoardController {
         model.addAttribute("category", category);
         return "content/board/" + boardInfo.getBoardType().getListViewPage();
     }
+    @GetMapping("/eng/board/{boardInfoId}/list")
+    public String engBoardList(@PathVariable(value = "boardInfoId") Long boardInfoId,
+                            @RequestParam(value = "category", required = false) String category,
+                            Model model){
+
+        BoardInfo boardInfo = boardService.getBoardInfo(boardInfoId);
+        model.addAttribute("boardInfo", boardInfo);
+        if (Objects.isNull(category)) {
+            category = "ALL";
+        }
+        model.addAttribute("category", category);
+        return "content/board/eng/" + boardInfo.getBoardType().getListViewPage();
+    }
     /**
      * 게시판 상세
      */

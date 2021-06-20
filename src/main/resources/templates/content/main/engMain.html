@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/engDefault">
+
+<div layout:fragment="content">
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100">
+            <h1>Together with Korean Adoptees</h1>
+            <h2>Truth and Reconciliation Underground. KoRoot will always be with Korean adoptees.</h2>
+            <p style="font-size: small">Artwork by conceptual artist Kimura Byol-Nathalie Lemoine.</p>
+            <div class="d-flex">
+                <a href="/support/guide" class="btn-get-started scrollto">지금후원하기</a>
+                <a href="https://www.youtube.com/channel/UCZ-74eQxUA349wbOBV4YjNw" class="btn-watch-video" target="_blank"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= notice Section ======= -->
+        <section class="featured-services">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-5 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div id="board">
+                            <div style="font-size: large">
+                                <strong>What's New</strong><strong style="float: right"><a href="/eng/board/15/list">+</a></strong>
+                            </div>
+                            <div th:each="board : ${boardList}">
+                                <a th:href="@{/board/{boardPostId}/detail(boardPostId=${board.boardPostId})}" style="color: black;">
+                                    <p th:text="${board.title}"></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/DM0WNj48mtE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="row" style="padding: 25px">
+                            <a href="/eng/support/guide"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">Donation Now</button></a>
+                            <a href="/support/volunteer"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">Resource</button></a>
+                        </div>
+                        <div class="row" style="padding: 25px">
+                            <a href="/board/7/list"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">Annual Report</button></a>
+                            <a href="/eng/board/14/list"><button type="button" class="btn btn-primary" style="width: 7em; height: 5em; background: #3b8540">Publishing</button></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- notice Section -->
+
+        <!-- ======= Testimonials Section ======= -->
+        <section id="testimonials" class="testimonials">
+            <div class="container" data-aos="zoom-in">
+
+                <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    우리 한국 입양인 커뮤니티와 이 세상을 위해 꼭 필요한 일들을 해주심에 감사한다. 뿌리의 집은 이 고단한 길을 공감과 이해, 한없는 지혜로 안내하며, 함께 돌보고 헌신하는 사람들이 있는 마치 등대와 같은 곳이다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Thank you for fulfilling an important need in our Korean adoptee community and the world at large. KoRoot is a lighthouse example of caring, committed humans guiding one another along the weary way with servings of compassion, doses of understanding, and unlimited refills of wisdom.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    입양인 커뮤니티가 필요로하는 한 뿌리의 집은 계속되었으면 좋겠다. 아마 앞으로도 수십년동안 그럴 것 같다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    I hope Koroot can continue as long as the adoptee community will need it. It seems like that would be for many more decades to come.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    집에서 멀리 떨어진 곳에 집과 같은 공간을 제공해주시고 입양에 대한 시각의 변화를 위해 싸워주셔서 고맙다. 그간의 노고와 이루어낸 변화에 감사하며, 앞으로 이 곳에 다시 머물 날을 고대한다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Thank you for providing us with a home indeed away from home but also representing and fighting for change in the adoption perspective. I so appreciate the fight and changes that have already taken place and I look forward to staying again in the future.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    뿌리의 집에 머무는것은 항상 즐겁다. 사생활 보호와 공동체가 조화롭게 어우러진 곳이다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    i have always loved staying at koroot... it has always been a good mixture of privacy and community.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    뿌리의 집은 내게 한국 입양인이라는 정체성을 배우고 받아들이는 중요한 요소이다. 이 곳에서 나는 멋진 친구들을 아주 많이 만났고, 영어를 넘어서는 소통을 배웠다.</p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    KoRoot was a vital component for me learning and accepting my Korean adoptee identity. I’ve made so many great friends there, and learned that communication go beyond using the English language.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    존재해 주셔서, 그리고  화해와 돌봄을 위해 입양인 이슈를 살아있게 해 주셔서 감사하다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Thanks to exist and to make the adoptee issues alive for reconciliation and care
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    매일 나를 환영해주고 도와주는 스텝들에게 감사를 표한다. 여러분이 없는 한국으로의 여행은 지금과 같을 수 없을 것이다.  덕분에 나는 힘을 내어 한국에서 가족과 함께 행복을 찾을 수 있었다. 다시 한 번 방문하고 싶고, 여러분이 해주신 모든 일에 감사한다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Thank you to the KoRoot staff for welcoming me and for helping me every day. My trip to Korea would not be the same without you. You have helped me to find my strength and to find happiness in Korea and with my family. I hope to visit you again. Thank you for everything you do.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    오랫동안 머물지 않았고 방문한 것도 몇번 안 되지만, 뿌리의 집을 생각하면 왠지 "집"이 떠오른다. 이곳은 모든 입양인을 돌보고 같은 지붕아래 하나로 연결해주며, 연대를 만들고 스스로 다시 추스릴 수 있는 안전한 장소이다. 뿌리의 집과 이 집에 더해진 역사의 가치는 너무나 소중하다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Even though I haven't stayed at KoRoot for so long and I have only been visiting for a few times. When thinking of KoRoot, somehow "Home" pops up. The value of KoRoot is that it in some sense is mothering all of us adoptees, and connecting us under the same roof. KoRoot holds a safe space for us to form bonds, and to reshape ourselves. The value of KoRoot and the value that it's history adds to the house is priceless.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    나를 환영하고, 편견으로 바라보지 않는 안전한 장소를 갖는다는 것.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Having a safe place where I feel welcomed and not judged by the society.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    한국 입양인들의 특별한 욕구를 지지해주면서 각자의 매우 개인적이고 독립적인 여행을 허용하는 이 사람들과 공간이 그립다,
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    I would miss having people and a place that support the unique needs of Korean adoptees, while also allowing them to take their own very individual, independent journies.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    입양인들이 한국가족과 다시 만날 때 도움을 받을 수 있는 기회
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    opportunity for adoptees of assistance in reunification with Korean family
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    뿌리의 집은 내가 집이라고 부르는 곳이다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    KoRoot is one of the places I call home.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    전세계 입양인들이 그들의 태어난 나라로 돌아가 편안함을 느낄수 있는 특별한 장소이다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    It is a very unique place where adoptees from all over the world can feel safe being back in their birth country.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    입양인을 위한 멋진 가능성을 제공하는 곳
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    A fantastic and incredible possibility for adoptees
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <p>
+                                    뿌리의 집은 한국 입양인들을 위해 안전한 공간과 커뮤니티를 제공한다.
+                                </p>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    Koroot provides a needed safe space and community for KADs.
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+        </section><!-- End Testimonials Section -->
+
+        <!-- ======= Clients Section ======= -->
+        <section id="clients" class="clients section-bg">
+            <div class="container" data-aos="zoom-in">
+
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://www.familyforeverychild.org/" target="_blank"><img src="/img/clients/client-1.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="http://kumfa.kr/" target="_blank"><img src="/img/clients/client-2.png" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://kumsn.org/" target="_blank"><img src="/img/clients/client-3.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <img src="/img/clients/client-4.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://www.325kamra.org/" target="_blank"><img src="/img/clients/client-5.png" class="img-fluid" alt="" style="max-width: 45%"></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://www.kpil.org/" target="_blank"><img src="/img/clients/client-6.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://kradoptee.modoo.at/" target="_blank"><img src="/img/clients/client-7.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://goal.or.kr/ko/" target="_blank"><img src="/img/clients/client-8.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <img src="/img/clients/client-9.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="https://intree.or.kr/" target="_blank"><img src="/img/clients/client-10.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="http://hwawoo.or.kr/" target="_blank"><img src="/img/clients/client-11.png" class="img-fluid" alt=""></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                        <a href="http://www.mofa.go.kr/" target="_blank"><img src="/img/clients/client-12.jpg" class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Clients Section -->
+
+    </main><!-- End #main -->
+
+    <th:block layout:fragment="script">
+        <script type="text/javascript">
+
+            $("#boardList5").on({
+                click:function(){
+                    location.href = "/board/11/list";
+                }
+            });
+
+            $("#boardList8").on({
+                click:function(){
+                    location.href = "/board/8/list";
+                }
+            });
+
+            $("#boardList3").on({
+                click:function(){
+                    location.href = "/board/3/list?category=A";
+                }
+            });
+
+            $("#boardList4").on({
+                click:function(){
+                    location.href = "/board/3/list";
+                }
+            });
+
+        </script>
+    </th:block>
+
+</div>
+
+</html>

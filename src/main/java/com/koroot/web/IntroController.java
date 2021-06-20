@@ -27,6 +27,14 @@ public class IntroController {
         return "content/board/contents";
     }
 
+    @GetMapping("/eng/intro/greetings")
+    public String engGreetings(Model model){
+        long boardPostId = 3539;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engContents";
+    }
+
     /**
      * 설립 목적
      */
@@ -37,6 +45,13 @@ public class IntroController {
         model.addAttribute("boardPost", boardPost);
         return "content/board/contents";
     }
+    @GetMapping("/eng/intro/introduction")
+    public String Introduction(Model model){
+        long boardPostId = 3541;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engContents";
+    }
     /**
      * 연혁
      */
@@ -44,6 +59,15 @@ public class IntroController {
     public String history(){
         return "content/intro/history";
     }
+
+    /**
+     * 연혁
+     */
+    @GetMapping("/eng/intro/history")
+    public String engHistory(){
+        return "content/intro/engHistory";
+    }
+
     /**
      * 함께하는 사람들
      */
@@ -58,7 +82,12 @@ public class IntroController {
      * 찾아오시는 길
      */
     @GetMapping("/intro/directions")
-    public String main(){
+    public String directions(){
         return "content/intro/directions";
+    }
+
+    @GetMapping("/eng/intro/directions")
+    public String engDirections(){
+        return "content/intro/engDirections";
     }
 }

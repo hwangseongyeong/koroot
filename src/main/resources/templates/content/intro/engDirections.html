@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Contact us</h2>
+                <p>Send your inquiry to KoRoot and we will respond by email. thank you.</p>
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-6">
+                    <div class="info-box mb-4">
+                        <i class="bx bx-map"></i>
+                        <h3>Our Address</h3>
+                        <p>(110-030) 125-10, Jahamun-ro, Jongno-gu, Seoul</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="info-box  mb-4">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>staff@koroot.org</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="info-box  mb-4">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Call Us</h3>
+                        <p>82+2-3210-24511</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="col-lg-6 ">
+                    <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1580.8152920220596!2d126.96806282806267!3d37.58731569630774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2ba14ad451d%3A0x4563337029cfa520!2z64yA7ZWc66-86rWtIOyEnOyauO2KueuzhOyLnCDsooXroZzqtawg7LKt7Jq07Zqo7J6Q64-ZIDUzLTU2!5e0!3m2!1sko!2sbg!4v1617193515727!5m2!1sko!2sbg" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                </div>
+
+                <div class="col-lg-6">
+                    <form role="form" onsubmit="return mailSend();" class="php-email-form">
+                        <div class="row">
+                            <div class="col form-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center">
+                            <button id="sendMail" class="ladda-button" type="submit" data-style="contract" style="width: 15em;">
+                                <span class="ladda-label">Send Message</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <br/><br/><br/>
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div style="border: 2px solid #3b8540;text-align: center;font-size: 1.5em;">
+                    There are three ways to get to KoRoot from the airport:
+                </div>
+
+                <p>
+                    <br/>
+                    <strong>1. Use KAL Limousine Bus #1 to Koreana Hotel (more expensive but convenient)</strong><br/><br/>
+                    Step 1. Purchase ticket to Koreana Hotel at KAL limousine counter NO.22 or at designated bus stops on the first floor at Eastern side 4B and Western side 11A. Look for KAL Bus No.1
+                    Fare is 15,000 Won.
+                    <br/><br/>
+                    Step 2. Catch a taxi in front of the Koreana Hotel.
+                    <br/><br/>
+                    Step 3. Show taxi driver the address written in Korean or give our phone number (02-3210- 2451) or mobile phone number (010-5444- 2451) to get directions to KoRoot. The KoRoot address is:
+                    서울특별시 종로구 자하문로 125-10  (청운동 53-56)
+                </p>
+
+                <p>
+                    <br/>
+                    <strong>2. Take Airport limousine bus #6011 to Gyeongbokgung Station (cheaper than KAL)</strong><br/><br/>
+                    Step 1. Take a limousine bus to Gyeongbokgung Station. Purchase tickets at bus stop Eastern side 5B, or Western side 12A . Fare : 10,000 Won per person
+                    <br/><br/>
+                    Step 2. Get off at Gyeongbokgung Station and cross the road to Exit No. 3 and take taxi from there.
+                    <br/><br/>
+                    Step 3. Give taxi driver our phone number or the address to KoRoot. It takes less than 10 minutes and costs less than 3,000 won.
+                </p>
+
+                <p>
+                    <br/>
+                    <strong>3. Take the AREX Airport Train to Seoul Station (all-stop or express)</strong><br/><br/>
+                    Step 1. Buy ticket to Seoul station at B4 level. All stop train is about 50% cheaper than express train but both go to Seoul Station, which is the last stop.
+                    <br/><br/>
+                    Step 2.  Take a taxi as above or take bus no.  1711, 7016, or 7018. The buses will make a U-turn to head north to KoRoot.
+                    <br/><br/>
+                    Step 3. You will pass Gyeongbokgung Station after around 10 stops. 3 stops after Gyeongbokgung station get off at Gyeong-gi Commercial High school).
+                    <br/><br/>
+                    Step 4.  Look for the Korean restaurant called 지화자(Jihwaja) on the opposite side of the road. Walk to the traffic light to cross the road to get to the Jihwaja. Just before you get to the restaurant, turn right and(you can find KoRoot signs on both walls) walk down the alley. Go straight ahead for about 20m, and KoRoot will appear on your right.
+                    <br/><br/>
+                    (Notice! If you take a taxi you should leave Seoul station through the back entrance, NOT the main entrance. You will see a line of cabs waiting right outside the back entrance. The fee should be less than 10,000 won depending on traffic).
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script>
+
+            const $name = $("#name");
+            const $email = $("#email");
+            const $subject = $("#subject");
+            const $message = $("#message");
+            const $l = $( '#sendMail' ).ladda();
+
+            function mailSend(){
+                let param = {
+                    "name": $name.val(),
+                    "email": $email.val(),
+                    "subject": $subject.val(),
+                    "message": $message.val()
+                };
+
+                $l.ladda( 'start' );
+                commAjax.post("/mail", param)
+                    .then(function(result){
+                        if (result) {
+                            Swal.fire("", "메일을 보냈습니다.", "success");
+                            formClear();
+                            $l.ladda('stop');
+                        } else {
+                            Swal.fire("", "메일을 보내는데 실패했습니다.", "error");
+                            $l.ladda('stop');
+                        }
+                    });
+
+                return false;
+            }
+
+            function formClear(){
+                $name.val('');
+                $email.val('');
+                $subject.val('');
+                $message.val('');
+            }
+        </script>
+    </th:block>
+
+</div>
+
+</html>

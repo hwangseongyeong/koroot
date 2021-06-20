@@ -30,4 +30,11 @@ public class CommunicationController {
     public String question(){
         return "content/communication/question";
     }
+    /**
+     * FAQ(영문)
+     */
+    @GetMapping("/eng/communication/faq")
+    public String engFaq(){
+        return "content/communication/engFaq";
+    }
 }

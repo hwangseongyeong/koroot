@@ -26,6 +26,13 @@ public class SupportController {
         model.addAttribute("boardPost", boardPost);
         return "content/board/contents";
     }
+    @GetMapping("/eng/support/guide")
+    public String engGuide(Model model){
+        long boardPostId = 3542;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engContents";
+    }
 
     /**
      * 자원활동하기

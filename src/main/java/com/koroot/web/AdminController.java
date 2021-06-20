@@ -3,6 +3,7 @@ package com.koroot.web;
 import com.koroot.domain.entity.BoardFile;
 import com.koroot.domain.entity.BoardPost;
 import com.koroot.service.BoardService;
+import com.koroot.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -17,9 +19,14 @@ import java.util.Objects;
 public class AdminController {
 
     private final BoardService boardService;
+    private final LoginService loginService;
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(HttpServletRequest request){
+
+        if (loginService.isLogin(request)) {
+            return "redirect:/admin/board";
+        }
 
         return "content/login/login";
     }

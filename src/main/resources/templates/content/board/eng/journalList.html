@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/engDefault">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <input id="boardInfoId" type="hidden" th:value="${boardInfo.boardInfoId}">
+        <input id="category" type="hidden" th:value="${category}">
+        <div class="container" data-aos="fade-up">
+            <div class="col-lg-12">
+                <h3><span th:text="${boardInfo.boardName}"></span></h3>
+                <h6 th:if="${boardInfo.boardInfoId == 14}">
+                    We introduce various perspectives on adoption and plan, translate, and publish books to diversify adoption discourse in Korean society.
+                </h6>
+            </div>
+            <div id="journal-feed" class="padded-main">
+                <div id="journal-feed-content"></div>
+            </div>
+    </section>
+
+    <th:block layout:fragment="script">
+        <script src="/js/board.js"></script>
+        <script type="text/javascript">
+
+            const content = $('#journal-feed-content');
+            pageLoad('ALL');
+
+            function getContentHtml(board){
+                return `<a class="feed-item" href="/board/${board.boardPostId}/detail">
+                            <div class="thumbnail-container">
+                                <div class="thumbnail" style="background-image: url(${board.mainImageUrl});"></div>
+                                <div class="journal-tags">
+                                    <!--<span class="journal-category round-button border-none bold">다양성</span>-->
+                                </div>
+                            </div>
+                            <div class="info-container">
+                                <h2 class="journal-title body-2 font-black-2">${board.title}</h2>
+                            </div>
+                        </a>`;
+            }
+
+            function pageLoad(category){
+                let param = {'boardInfoId' : $('#boardInfoId').val()}
+                let url = '/api/board/journalList';
+                commAjax.get(url, param)
+                    .then(data => {
+                        data.forEach(board => {
+                            content.append(getContentHtml(board));
+                        });
+                    })
+            }
+        </script>
+    </th:block>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/journal.css}" >
+    </th:block>
+
+</div>
+
+</html>
