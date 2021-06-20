@@ -41,4 +41,9 @@ public class SupportController {
     public String volunteer(){
         return "content/support/volunteer";
     }
+
+    @GetMapping("/eng/support/volunteer")
+    public String engVolunteer(){
+        return "content/support/engVolunteer";
+    }
 }
