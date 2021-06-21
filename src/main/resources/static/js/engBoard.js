@@ -38,6 +38,6 @@ function initTable() {
     });
 
     $table.on('click-row.bs.table', function (e, rowData) {
-        location.href="/board/" + rowData.boardPostId + "/detail";
+        location.href="/eng/board/" + rowData.boardPostId + "/detail";
     });
 }
