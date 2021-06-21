@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/engDefault">
+
+<div layout:fragment="content">
+
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <article class="board-detail">
+                <hgroup>
+                    <em th:text="${boardInfo.boardName}" style="font-style: inherit;"></em>
+                    <strong th:text="${boardPost.title}"></strong>
+                    <i th:text="${boardPost.formatDate}" style="font-style: inherit;"></i>
+                </hgroup>
+
+                <div class="con ck-blurred ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline" th:utext="${boardPost.contents}">
+                </div>
+
+            </article>
+            <article class="board-btns">
+                <a th:href="@{/board/{boardInfoId}/list(boardInfoId=${boardInfo.boardInfoId})}" class="btn-go-list">목록으로</a>
+            </article>
+        </div>
+    </section>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/ckeditor.css}" >
+    </th:block>
+
+</div>
+
+</html>

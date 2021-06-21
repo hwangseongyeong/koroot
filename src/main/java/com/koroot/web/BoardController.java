@@ -60,4 +60,11 @@ public class BoardController {
         model.addAttribute("boardPost", boardPost);
         return "content/board/boardDetail";
     }
+    @GetMapping("/eng/board/{boardPostId}/detail")
+    public String engBoardDetail(@PathVariable(value = "boardPostId") Long boardPostId,Model model){
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardInfo", boardService.getBoardInfo(boardPost.getBoardInfoId()));
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engBoardDetail";
+    }
 }

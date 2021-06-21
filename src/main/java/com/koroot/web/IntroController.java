@@ -46,8 +46,15 @@ public class IntroController {
         return "content/board/contents";
     }
     @GetMapping("/eng/intro/introduction")
-    public String Introduction(Model model){
+    public String introduction(Model model){
         long boardPostId = 3541;
+        BoardPost boardPost = boardService.getBoardPost(boardPostId);
+        model.addAttribute("boardPost", boardPost);
+        return "content/board/engContents";
+    }
+    @GetMapping("/eng/intro/reservations")
+    public String reservations(Model model){
+        long boardPostId = 4055;
         BoardPost boardPost = boardService.getBoardPost(boardPostId);
         model.addAttribute("boardPost", boardPost);
         return "content/board/engContents";
