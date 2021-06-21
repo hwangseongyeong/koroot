@@ -4,7 +4,7 @@ function initTable() {
     const $table = $('#table');
     $table.bootstrapTable('destroy').bootstrapTable({
         url: '/api/board/list?boardInfoId=' + boardInfoId,
-        locale: "ko-KR",
+        locale: "en-US",
         columns: [
             {
                 title: 'No.',
