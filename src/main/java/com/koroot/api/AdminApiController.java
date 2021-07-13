@@ -3,6 +3,7 @@ package com.koroot.api;
 import com.koroot.model.BoardPostRequestDto;
 import com.koroot.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,14 +17,16 @@ public class AdminApiController {
 
     @PostMapping(consumes = {"multipart/form-data"})
     public boolean createBoard(@RequestPart(value = "mainImage", required = false) MultipartFile mainImage,
+                               @RequestPart(value = "boardFile", required = false) MultipartFile boardFile,
                                @RequestPart(value = "reqData") BoardPostRequestDto reqData) throws Exception{
-        return boardService.createBoard(reqData, mainImage);
+        return boardService.createBoard(reqData, mainImage, boardFile);
     }
 
     @PutMapping(consumes = {"multipart/form-data"})
     public boolean updateBoard(@RequestPart(value = "mainImage", required = false) MultipartFile mainImage,
+                               @RequestPart(value = "boardFile", required = false) MultipartFile boardFile,
                                @RequestPart(value = "reqData") BoardPostRequestDto reqData) throws Exception{
-        return boardService.updateBoard(reqData, mainImage);
+        return boardService.updateBoard(reqData, mainImage, boardFile);
     }
 
     @DeleteMapping
@@ -31,4 +34,8 @@ public class AdminApiController {
         return boardService.deleteBoard(boardPostId);
     }
 
+    @DeleteMapping("/{boardFileId}")
+    public boolean deleteBoardFile(@PathVariable(value = "boardFileId") Long boardFileId) {
+        return boardService.deleteBoardFile(boardFileId);
+    }
 }

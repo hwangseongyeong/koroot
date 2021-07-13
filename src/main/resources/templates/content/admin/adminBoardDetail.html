@@ -56,6 +56,20 @@
                     </div>
                     <div class="row">
                         <div class="col form-group col-lg-2">
+                            <strong>첨부파일</strong>
+                        </div>
+                        <div class="col form-group col-lg-10">
+                            <div class="btn btn-default btn-file">
+                                <input id="boardFile" name="boardFile" type="file" class="file">
+                            </div>
+                            <div th:each="boardFile : ${boardFileList}">
+                                <a th:href="@{/file/download/{boardFileId}(boardFileId=${boardFile.boardFileId})}" th:text="${boardFile.fileOriginalName}"></a>
+                                <button class="boardFileDeleteButton" type="button" th:data-board-file-id="${boardFile.boardFileId}">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group col-lg-2">
                             <strong>제목</strong>
                         </div>
                         <div class="col form-group col-lg-10">
@@ -104,6 +118,7 @@
                         let formData = new FormData();
 
                         let mainImageFile = document.getElementById('mainImage').files[0];
+                        let boardFile = document.getElementById('boardFile').files[0];
 
                         let requestBoardPost = {
                             "boardPostId": $("#boardPostId").val(),
@@ -115,6 +130,7 @@
 
                         formData.append('reqData', new Blob([JSON.stringify(requestBoardPost)], {type: "application/json"}));
                         formData.append('mainImage', mainImageFile);
+                        formData.append('boardFile', boardFile);
 
                         commAjax.putMultipart("/api/admin/board", formData)
                             .then(function(result){
@@ -144,6 +160,20 @@
                                     location.href = "/admin?boardInfoId=" + $("#boardInfoId").val();
                                 } else {
                                     Swal.fire("", "삭제에 실패했습니다.", "error");
+                                }
+                            });
+                    }
+                });
+
+                $(".boardFileDeleteButton").on({
+                    click:function(e){
+                        commAjax.delete("/api/admin/board/" + e.target.dataset.boardFileId)
+                            .then(function(result){
+                                if(result){
+                                    e.target.parentElement.remove();
+                                    Swal.fire("", "첨부파일이 삭제되었습니다.", "success");
+                                } else {
+                                    Swal.fire("", "첨부파일 삭제에 실패했습니다.", "error");
                                 }
                             });
                     }

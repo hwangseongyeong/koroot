@@ -54,7 +54,7 @@
                         </div>
                         <div class="col form-group col-lg-10">
                             <fieldset>
-                                <input id="file-upload" name="file[]" type="file" multiple="multiple" />
+                                <input id="boardFile" name="boardFile" type="file" multiple="multiple" />
                             </fieldset>
                         </div>
                     </div>
@@ -107,6 +107,7 @@
                         let formData = new FormData();
 
                         let mainImageFile = document.getElementById('mainImage').files[0];
+                        let boardFile = document.getElementById('boardFile').files[0];
 
                         let requestBoardPost = {
                             "boardInfoId": $("#boardInfoId").val(),
@@ -117,6 +118,7 @@
 
                         formData.append('reqData', new Blob([JSON.stringify(requestBoardPost)], {type: "application/json"}));
                         formData.append('mainImage', mainImageFile);
+                        formData.append('boardFile', boardFile);
 
                         commAjax.postMultipart("/api/admin/board", formData)
                             .then(function(result){

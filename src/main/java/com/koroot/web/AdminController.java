@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -58,6 +59,11 @@ public class AdminController {
             BoardFile boardFile = boardService.getBoardFile(boardPost.getMainImageId());
             model.addAttribute("mainImage", boardFile);
         }
+        List<BoardFile> boardFileList = boardService.getBoardFiles(boardPostId);
+        if(!boardFileList.isEmpty()) {
+            model.addAttribute("boardFileList", boardFileList);
+        }
+
         return "content/admin/adminBoardDetail";
     }
 

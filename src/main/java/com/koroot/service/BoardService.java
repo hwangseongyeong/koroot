@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class BoardService {
     private final ImageService imageService;
 
     private static final String BOARD_MAIN_IMAGE_PATH = "main";
+    private static final String BOARD_FILE_PATH = "board";
 
     public BoardInfo getBoardInfo(long boardInfoId){
         return boardInfoRepository.findById(boardInfoId)
@@ -46,7 +48,7 @@ public class BoardService {
     @Transactional
     public BoardPost getBoardPost(long boardPostId){
         Optional<BoardPost> boardPost =  boardPostRepository.findById(boardPostId);
-        boardPost.ifPresent(it -> it.updateHit());
+        boardPost.ifPresent(BoardPost::updateHit);
         return boardPost.orElseGet(null);
     }
 
@@ -78,13 +80,17 @@ public class BoardService {
     }
 
     @Transactional
-    public boolean createBoard(BoardPostRequestDto reqDto, MultipartFile mainImage) throws Exception{
+    public boolean createBoard(BoardPostRequestDto reqDto, MultipartFile mainImage, MultipartFile boardFile) throws Exception{
         BoardPost boardPost = BoardPost.of(reqDto);
 
         boardPostRepository.save(boardPost);
 
         if (Objects.nonNull(mainImage)) {
-            boardPost.updateMainImageId(this.boardFileSave(mainImage, boardPost.getBoardPostId()));
+            boardPost.updateMainImageId(this.boardImageFileSave(mainImage, boardPost.getBoardPostId()));
+        }
+
+        if (Objects.nonNull(boardFile)) {
+            this.boardFileSave(boardFile, boardPost.getBoardPostId());
         }
 
         return true;
@@ -94,8 +100,21 @@ public class BoardService {
         return boardFileRepository.findById(boardFileId).orElseGet(null);
     }
 
+    public List<BoardFile> getBoardFiles(long boardPostId){
+        return boardFileRepository.findAllByBoardPostIdAndDeletedIsFalse(boardPostId).orElse(Collections.emptyList());
+    }
+
+    public boolean deleteBoardFile(long boardFileId) {
+        boardFileRepository.findById(boardFileId)
+                .ifPresent(it -> {
+                    it.updateDisable();
+                    boardFileRepository.save(it);
+                });
+        return true;
+    }
+
     @Transactional
-    public boolean updateBoard(BoardPostRequestDto reqDto, MultipartFile mainImage) throws Exception{
+    public boolean updateBoard(BoardPostRequestDto reqDto, MultipartFile mainImage, MultipartFile boardFile) throws Exception{
         BoardPost boardPost = boardPostRepository.findById(reqDto.getBoardPostId()).orElseGet(null);
 
         if(Objects.nonNull(boardPost)){
@@ -103,21 +122,24 @@ public class BoardService {
         }
 
         if (Objects.nonNull(mainImage)) {
-            boardPost.updateMainImageId(this.boardFileSave(mainImage, boardPost.getBoardPostId()));
+            boardPost.updateMainImageId(this.boardImageFileSave(mainImage, boardPost.getBoardPostId()));
         }
+
+        if (Objects.nonNull(boardFile)) {
+            this.boardFileSave(boardFile, boardPost.getBoardPostId());
+        }
+
         return true;
     }
 
     @Transactional
     public boolean deleteBoard(Long boardPostId) {
         boardPostRepository.findById(boardPostId)
-                .ifPresent(it -> {
-                    it.updateDeleted(BoardPost.BOARD_WRITER);
-                });
+                .ifPresent(it -> it.updateDeleted(BoardPost.BOARD_WRITER));
         return true;
     }
 
-    private long boardFileSave(MultipartFile mainImage, long boardPostId) throws Exception{
+    private long boardImageFileSave(MultipartFile mainImage, long boardPostId) throws Exception{
         BoardFileDto boardFileDto = imageService.imageUpload(mainImage, BOARD_MAIN_IMAGE_PATH);
         BoardFile boardFile = BoardFile.builder()
                 .boardPostId(boardPostId)
@@ -125,6 +147,19 @@ public class BoardService {
                 .fileOriginalName(boardFileDto.getOriginalName())
                 .filePath(BOARD_MAIN_IMAGE_PATH)
                 .fileType("IMAGE")
+                .build();
+        boardFileRepository.save(boardFile);
+        return boardFile.getBoardFileId();
+    }
+
+    private long boardFileSave(MultipartFile mainImage, long boardPostId) throws Exception{
+        BoardFileDto boardFileDto = imageService.fileUpload(mainImage, BOARD_FILE_PATH);
+        BoardFile boardFile = BoardFile.builder()
+                .boardPostId(boardPostId)
+                .fileName(boardFileDto.getFileName())
+                .fileOriginalName(boardFileDto.getOriginalName())
+                .filePath(BOARD_FILE_PATH)
+                .fileType("FILE")
                 .build();
         boardFileRepository.save(boardFile);
         return boardFile.getBoardFileId();

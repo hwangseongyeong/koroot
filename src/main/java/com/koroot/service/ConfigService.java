@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 public class ConfigService {
 
     public static final String IMAGE_DOWNLOAD_PATH = "/image/download";
+    public static final String FILE_DOWNLOAD_PATH = "/file/download";
+
+    @Value("${file.upload-path}")
+    public String FILE_DIR_PATH;
 
     @Value("${file.image.upload-path}")
     public String IMAGE_DIR_PATH;

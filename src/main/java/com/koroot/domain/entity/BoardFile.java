@@ -6,10 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -24,6 +21,8 @@ public class BoardFile {
     private String filePath;
     private String fileOriginalName;
     private String fileName;
+    @Column(columnDefinition = "TINYINT")
+    private boolean deleted;
 
     @Builder
     public BoardFile(Long boardPostId, String fileType, String filePath, String fileOriginalName, String fileName) {
@@ -36,5 +35,13 @@ public class BoardFile {
 
     public String getImageUrl(){
         return ConfigService.IMAGE_DOWNLOAD_PATH + "/" + filePath + "/" + fileName;
+    }
+
+    public String getFileUrl(){
+        return ConfigService.FILE_DOWNLOAD_PATH + "/" + filePath + "/" + fileName;
+    }
+
+    public void updateDisable() {
+        this.deleted = true;
     }
 }

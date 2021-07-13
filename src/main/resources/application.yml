@@ -37,6 +37,7 @@ spring:
             enable: true
 
 file:
+  upload-path: D:/upload/file
   image:
     upload-path: D:/upload/image
 
@@ -67,5 +68,6 @@ spring:
             enable: true
 
 file:
+  upload-path: /koroot2452/upload/file
   image:
     upload-path: /koroot2452/upload/image
