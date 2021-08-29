@@ -17,8 +17,8 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
-    #url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
+    #url: jdbc:mysql://localhost:3306/koroot?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://umj7-021.cafe24.com:3306/koroot2452?serverTimezone=UTC&characterEncoding=UTF-8
     username: koroot2452
     password: koroot2451
 
@@ -36,10 +36,15 @@ spring:
           starttls:
             enable: true
 
+#file:
+#  upload-path: D:/upload/file
+#  image:
+#    upload-path: D:/upload/image
+
 file:
-  upload-path: D:/upload/file
+  upload-path: /Users/larva/upload/file
   image:
-    upload-path: D:/upload/image
+    upload-path: /Users/larva/upload/image
 
 ---
 spring:
