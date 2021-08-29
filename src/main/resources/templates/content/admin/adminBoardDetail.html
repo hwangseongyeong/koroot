@@ -77,7 +77,8 @@
                         </div>
                     </div>
                     <div class="form-group w-auto">
-                        <textarea id="contents" class="form-control" placeholder="내용" th:text="${boardPost.contents}"></textarea>
+                        <div id="toolbar-container"></div>
+                        <div id="editor" th:text="${boardPost.contents}"></div>
                     </div>
                     <div class="modal-footer">
                         <button id="listBtn" type="button" class="btn btn-primary">목록</button>
@@ -90,22 +91,25 @@
     </section>
 
     <th:block layout:fragment="script">
-        <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/decoupled-document/ckeditor.js"></script>
         <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
         <script>
             const boardPostId = $("#boardPostId").val();
+
             let editor;
-            ClassicEditor
-                .create( document.querySelector( '#contents' ),{
+            DecoupledEditor
+                .create( document.querySelector( '#editor' ),{
                     ckfinder: {
                         uploadUrl: '/image/upload/board'
                     }
                 }).then( newEditor => {
-                editor = newEditor;
-            })
-                .catch( error => {
+                    editor = newEditor;
+                    editor.setData( $('#editor').text() );
+                    const toolbarContainer = document.querySelector( '#toolbar-container' );
+                    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                }).catch( error => {
                     console.error( error );
-                } );
+                });
 
             $(function() {
                 $("#saveBtn").on({
