@@ -6,15 +6,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface BoardPostRepository extends JpaRepository<BoardPost, Long> {
     @Query(value =
               "select "
             + "   board "
             + "from BoardPost board "
-            + "where board.boardInfoId = :#{#boardSearch.boardInfoId} "
-            + "and (:#{#boardSearch.search} is null or board.title like concat('%',:#{#boardSearch.search},'%'))"
+            + "where board.boardInfoId = :#{#search.boardInfoId} "
+            + "and (:#{#search.search} is null or board.title like concat('%',:#{#search.search},'%'))"
             + "and board.deleted = false "
             + "order by board.createdAt desc ")
-    Page<BoardPost> findAllSearch(Pageable pageable, BoardSearch boardSearch);
+    Page<BoardPost> findAllSearch(@Param("pageable") Pageable pageable,
+                                  @Param("search") BoardSearch search);
 }

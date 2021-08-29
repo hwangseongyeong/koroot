@@ -59,7 +59,14 @@ public class BoardService {
 
     public Page<BoardPost> getBoardPostList(BoardSearch search){
         Pageable pageable = PageRequest.of(search.getOffset()/search.getLimit(), search.getLimit());
-        return boardPostRepository.findAllSearch(pageable, search);
+        try{
+            Page<BoardPost> test = boardPostRepository.findAllSearch(pageable, search);
+            return test;
+        }catch (Exception e){
+            e.printStackTrace();
+            return Page.empty();
+        }
+        //return boardPostRepository.findAllSearch(pageable, search);
     }
 
     public List<BoardPostDto> getBoardPostJournalList(BoardSearch search){

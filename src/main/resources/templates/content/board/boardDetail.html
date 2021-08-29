@@ -12,8 +12,9 @@
                     <em th:text="${boardInfo.boardName}" style="font-style: inherit;"></em>
                     <strong th:text="${boardPost.title}"></strong>
                     <i th:text="${boardPost.formatDate}" style="font-style: inherit;"></i>
-                    <i th:each="boardFile : ${boardFileList}" style="font-style: inherit;">
-                        <a th:href="@{/file/download/{boardFileId}(boardFileId=${boardFile.boardFileId})}" th:text="${boardFile.fileOriginalName}"></a>
+                    <i th:if="${boardFileList != null}" style="font-style: inherit;">
+                        <span th:if="${boardFileList != null}" class="footer-label subhead-4 font-gray-1">첨부파일</span>
+                        <a style="padding-left: 10px;" th:each="boardFile : ${boardFileList}" th:href="@{/file/download/{boardFileId}(boardFileId=${boardFile.boardFileId})}" th:text="${boardFile.fileOriginalName}"></a>
                     </i>
                 </hgroup>
 
